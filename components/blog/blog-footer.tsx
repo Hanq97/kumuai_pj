@@ -3,7 +3,7 @@ import Link from "next/link"
 export function BlogFooter() {
   return (
     <footer className="py-8 sm:py-12 bg-foreground text-background">
-      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-2">
