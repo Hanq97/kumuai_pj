@@ -218,7 +218,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
       
       {/* Breadcrumb */}
       <div className="pt-20 sm:pt-24 border-b border-border bg-secondary/30">
-        <div className="container mx-auto px-4 py-3 sm:py-4">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-8 py-3 sm:py-4">
           <nav className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground overflow-x-auto">
             <Link href="/" className="hover:text-foreground transition-colors whitespace-nowrap">
               ホーム
@@ -237,7 +237,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
 
       {/* Article */}
       <article className="py-6 sm:py-10">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
             {/* Main Content */}
             <div className="flex-1 max-w-3xl">
@@ -368,7 +368,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
 
       {/* Related Posts */}
       <section className="py-10 sm:py-14 bg-secondary/30">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-5 sm:px-6 lg:px-8">
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-6 sm:mb-8">
             関連記事
           </h2>
