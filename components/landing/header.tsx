@@ -28,16 +28,16 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-md bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="#" className="flex items-center gap-2 sm:gap-2.5">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[22px] sm:h-[22px]">
                 <circle cx="12" cy="12" r="8" stroke="white" strokeWidth="2.5" fill="none" />
                 <path d="M12 4V12L17 17" stroke="white" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-foreground text-lg leading-tight">ゼロマネ</span>
-              <span className="text-[10px] text-muted-foreground leading-none tracking-wider">ZERO MANAGEMENT</span>
+              <span className="font-bold text-foreground text-base sm:text-lg leading-tight">ゼロマネ</span>
+              <span className="text-[9px] sm:text-[10px] text-muted-foreground leading-none tracking-wider">ZERO MANAGEMENT</span>
             </div>
           </a>
 
@@ -77,20 +77,20 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
-            <nav className="flex flex-col gap-2">
+          <div className="lg:hidden py-3 sm:py-4 border-t border-border">
+            <nav className="flex flex-col gap-1 sm:gap-2">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollToSection(item.href)}
-                  className="text-left px-4 py-3 text-foreground hover:bg-secondary rounded-lg transition-colors"
+                  className="text-left px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-foreground hover:bg-secondary rounded-lg transition-colors"
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="px-4 pt-2">
+              <div className="px-3 sm:px-4 pt-2">
                 <Button 
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                  className="w-full text-sm sm:text-base bg-accent hover:bg-accent/90 text-accent-foreground"
                   onClick={() => scrollToSection("#contact")}
                 >
                   無料デモを予約

@@ -25,28 +25,28 @@ export function SolutionsSection() {
   return (
     <section id="solutions" className="py-12 lg:py-16 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-8">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-3 text-balance">
+        <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-2 sm:mb-3 text-balance">
             ゼロマネが提供する<span className="text-accent">「3つの解放」</span>
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
             <div 
               key={index}
-              className="bg-primary-foreground/10 rounded-xl p-6 hover:bg-primary-foreground/15 transition-colors cursor-pointer"
+              className="bg-primary-foreground/10 rounded-xl p-4 sm:p-6 hover:bg-primary-foreground/15 transition-colors cursor-pointer"
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center">
-                  <solution.icon className="h-6 w-6 text-accent" />
+              <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/20 flex items-center justify-center">
+                  <solution.icon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 </div>
-                <span className="text-4xl font-bold text-primary-foreground/20">{solution.number}</span>
+                <span className="text-3xl sm:text-4xl font-bold text-primary-foreground/20">{solution.number}</span>
               </div>
-              <h3 className="text-lg font-bold text-primary-foreground mb-3">
+              <h3 className="text-base sm:text-lg font-bold text-primary-foreground mb-2 sm:mb-3">
                 {solution.title}
               </h3>
-              <p className="text-primary-foreground/80 leading-relaxed text-sm">
+              <p className="text-primary-foreground/80 leading-relaxed text-xs sm:text-sm">
                 {solution.description}
               </p>
             </div>

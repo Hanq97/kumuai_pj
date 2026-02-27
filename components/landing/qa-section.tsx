@@ -56,16 +56,16 @@ export function QASection() {
   return (
     <section id="qa" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-8">
-          <p className="text-primary font-medium mb-2 text-sm">Q & A</p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground text-balance">
+        <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
+          <p className="text-primary font-medium mb-1 sm:mb-2 text-xs sm:text-sm">Q & A</p>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground text-balance">
             ゼロマネを導入する前に
             <br />
             <span className="text-primary">よくいただくご質問</span>
           </h2>
         </div>
         
-        <div className="max-w-3xl mx-auto flex flex-col gap-3">
+        <div className="max-w-3xl mx-auto flex flex-col gap-2 sm:gap-3">
           {qaItems.map((item, index) => {
             const isOpen = openIndex === index
             return (
@@ -75,34 +75,34 @@ export function QASection() {
               >
                 <button
                   onClick={() => toggleItem(index)}
-                  className={`w-full flex items-center justify-between px-5 py-4 text-left transition-colors cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-3 sm:px-5 py-3 sm:py-4 text-left transition-colors cursor-pointer ${
                     isOpen 
                       ? "bg-primary" 
                       : "bg-card hover:bg-secondary/50"
                   }`}
                 >
-                  <div className="flex items-center gap-4">
-                    <span className={`font-bold text-lg ${
+                  <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+                    <span className={`font-bold text-sm sm:text-lg shrink-0 ${
                       isOpen ? "text-primary-foreground" : "text-primary"
                     }`}>
                       Q{index + 1}
                     </span>
-                    <span className={`font-medium ${
+                    <span className={`font-medium text-sm sm:text-base ${
                       isOpen ? "text-primary-foreground" : "text-foreground"
                     }`}>
                       {item.question}
                     </span>
                   </div>
                   {isOpen ? (
-                    <Minus className="h-5 w-5 shrink-0 text-primary-foreground" />
+                    <Minus className="h-4 w-4 sm:h-5 sm:w-5 shrink-0 ml-2 text-primary-foreground" />
                   ) : (
-                    <Plus className="h-5 w-5 shrink-0 text-primary" />
+                    <Plus className="h-4 w-4 sm:h-5 sm:w-5 shrink-0 ml-2 text-primary" />
                   )}
                 </button>
                 
                 {isOpen && (
-                  <div className="bg-card px-5 py-4 pl-16">
-                    <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                  <div className="bg-card px-3 sm:px-5 py-3 sm:py-4 pl-10 sm:pl-16">
+                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">
                       {item.answer}
                     </p>
                   </div>
