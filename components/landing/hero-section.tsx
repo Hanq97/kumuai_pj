@@ -19,41 +19,41 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Text Content - Left Side */}
           <div className="text-center lg:text-left">
-            <div className="inline-block mb-6 px-4 py-2 bg-accent/10 rounded-full">
-              <span className="text-accent text-sm font-medium">
+            <div className="inline-block mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent/10 rounded-full">
+              <span className="text-accent text-xs sm:text-sm font-medium">
                 2027年・育成就労制度対応
               </span>
             </div>
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-4 sm:mb-6 text-balance">
               <span className="text-primary">「管理」</span>を、仕事にしない。
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
               2027年・育成就労制度への対応も、このシステムが勝手にやります。
             </p>
             
-            <p className="text-base text-muted-foreground mb-10 leading-relaxed">
+            <p className="text-sm sm:text-base text-muted-foreground mb-8 sm:mb-10 leading-relaxed">
               面倒な書類作成は1クリック。法改正による書式変更も自動アップデート。
               <br className="hidden md:block" />
               あなたの時間を奪う「Excel管理」と「期限への恐怖」を、今日で終わりにしませんか？
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
               <Button 
                 size="lg" 
-                className="text-base px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+                className="text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
                 onClick={scrollToContact}
               >
-                <FileText className="mr-2 h-5 w-5" />
+                <FileText className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 30日間無料で体験する
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="text-base px-8 py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent transition-colors"
+                className="text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent transition-colors"
               >
-                <Download className="mr-2 h-5 w-5" />
+                <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 資料ダウンロード
               </Button>
             </div>

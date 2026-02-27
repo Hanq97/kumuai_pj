@@ -44,11 +44,11 @@ export function FeaturesSection() {
   return (
     <section id="features" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-10">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 text-balance">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3 text-balance">
             ゼロマネの<span className="text-primary">特徴的な機能</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             「手間がかからない」ことを機能で証明します
           </p>
         </div>
@@ -83,15 +83,15 @@ export function FeaturesSection() {
                 {/* Text Side */}
                 <div className="w-full lg:w-1/2">
                   <div className={`${isEven ? 'lg:pl-4' : 'lg:pr-4'}`}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                        <feature.icon className="h-6 w-6 text-primary" />
+                    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                        <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                       </div>
-                      <h3 className="text-xl lg:text-2xl font-bold text-primary">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
                         {feature.title}
                       </h3>
                     </div>
-                    <p className="text-muted-foreground leading-relaxed text-base lg:text-lg">
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base lg:text-lg">
                       {feature.description}
                     </p>
                   </div>

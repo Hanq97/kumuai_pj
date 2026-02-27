@@ -27,28 +27,28 @@ export function TokuchouSection() {
   return (
     <section id="tokuchou" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-8">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-3 text-balance">
+        <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3 text-balance">
             ゼロマネの<span className="text-primary">特徴</span>
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-sm sm:text-base text-muted-foreground">
             シンプルで使いやすい機能で、業務効率を最大化します
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 max-w-6xl mx-auto">
           {characteristics.map((item, index) => (
             <div 
               key={index}
-              className="bg-card p-6 rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all cursor-pointer text-center"
+              className="bg-card p-4 sm:p-6 rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all cursor-pointer text-center"
             >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <item.icon className="h-7 w-7 text-primary" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <item.icon className="h-6 w-6 sm:h-7 sm:w-7 text-primary" />
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-2">
+              <h3 className="text-sm sm:text-lg font-bold text-foreground mb-1 sm:mb-2">
                 {item.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                 {item.description}
               </p>
             </div>
