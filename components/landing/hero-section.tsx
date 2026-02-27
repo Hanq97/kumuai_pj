@@ -15,7 +15,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center bg-background overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary via-background to-background" />
-      <div className="container relative mx-auto px-4 py-12 lg:py-20">
+      <div className="container relative mx-auto px-5 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Text Content - Left Side */}
           <div className="text-center lg:text-left">
