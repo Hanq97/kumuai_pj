@@ -39,9 +39,9 @@ export function BlogFooter() {
             <h4 className="text-sm sm:text-base font-semibold text-background mb-3 sm:mb-4">会社情報</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-background/70">
               <li><Link href="#" className="hover:text-background transition-colors">運営会社</Link></li>
-              <li><Link href="#" className="hover:text-background transition-colors">プライバシーポリシー</Link></li>
-              <li><Link href="#" className="hover:text-background transition-colors">利用規約</Link></li>
-              <li><Link href="#" className="hover:text-background transition-colors">特定商取引法に基づく表記</Link></li>
+              <li><Link href="/privacy" className="hover:text-background transition-colors">プライバシーポリシー</Link></li>
+              <li><Link href="/terms" className="hover:text-background transition-colors">利用規約</Link></li>
+              <li><Link href="/tokusho" className="hover:text-background transition-colors">特定商取引法に基づく表記</Link></li>
             </ul>
           </div>
         </div>

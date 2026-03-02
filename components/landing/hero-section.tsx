@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { FileText, Download } from "lucide-react"
 import Image from "next/image"
@@ -52,9 +53,12 @@ export function HeroSection() {
                 size="lg" 
                 variant="outline" 
                 className="text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent transition-colors"
+                asChild
               >
-                <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                資料ダウンロード
+                <Link href="/download">
+                  <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  資料ダウンロード
+                </Link>
               </Button>
             </div>
             
