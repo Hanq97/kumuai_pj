@@ -315,37 +315,10 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                   </button>
                 </div>
               </div>
-            </div>
 
-            {/* Sidebar */}
-            <aside className="lg:w-80 space-y-6">
-              {/* Table of Contents - Desktop Only */}
-              {headings.length > 0 && (
-                <div className="hidden lg:block sticky top-24 bg-card rounded-xl border border-border p-5">
-                  <h3 className="text-sm font-bold text-foreground mb-4">目次</h3>
-                  <nav className="space-y-2">
-                    {headings.map((heading) => (
-                      <a
-                        key={heading.id}
-                        href={`#${heading.id}`}
-                        className={`block text-sm transition-colors ${
-                          heading.level === 3 ? 'pl-3' : ''
-                        } ${
-                          activeHeading === heading.id
-                            ? 'text-primary font-medium'
-                            : 'text-muted-foreground hover:text-foreground'
-                        }`}
-                      >
-                        {heading.text}
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              )}
-
-              {/* CTA Sidebar */}
-              <div className="lg:sticky lg:top-[calc(24rem+1.5rem)] bg-primary rounded-xl p-5 sm:p-6 text-primary-foreground">
-                <h3 className="text-base sm:text-lg font-bold mb-2">
+              {/* Mobile CTA */}
+              <div className="lg:hidden mt-8 bg-primary rounded-xl p-5 text-primary-foreground">
+                <h3 className="text-base font-bold mb-2">
                   このシステムについて詳しく知る
                 </h3>
                 <p className="text-sm text-primary-foreground/80 mb-4">
@@ -360,6 +333,54 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <aside className="lg:w-80 hidden lg:block">
+              <div className="sticky top-24 space-y-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
+                {/* Table of Contents - Desktop Only */}
+                {headings.length > 0 && (
+                  <div className="bg-card rounded-xl border border-border p-5">
+                    <h3 className="text-sm font-bold text-foreground mb-4">目次</h3>
+                    <nav className="space-y-2">
+                      {headings.map((heading) => (
+                        <a
+                          key={heading.id}
+                          href={`#${heading.id}`}
+                          className={`block text-sm transition-colors ${
+                            heading.level === 3 ? 'pl-3' : ''
+                          } ${
+                            activeHeading === heading.id
+                              ? 'text-primary font-medium'
+                              : 'text-muted-foreground hover:text-foreground'
+                          }`}
+                        >
+                          {heading.text}
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                )}
+
+                {/* CTA Sidebar */}
+                <div className="bg-primary rounded-xl p-5 sm:p-6 text-primary-foreground">
+                  <h3 className="text-base sm:text-lg font-bold mb-2">
+                    このシステムについて詳しく知る
+                  </h3>
+                  <p className="text-sm text-primary-foreground/80 mb-4">
+                    監理ワンの機能や導入事例について、詳しくご説明いたします。
+                  </p>
+                  <Button 
+                    className="w-full text-sm bg-accent hover:bg-accent/90 text-accent-foreground"
+                    asChild
+                  >
+                    <Link href="/#contact">
+                      無料デモを予約
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </aside>
           </div>
