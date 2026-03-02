@@ -41,10 +41,7 @@ export function Header() {
                 <path d="M12 4V12L17 17" stroke="white" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-foreground text-base sm:text-lg leading-tight">監理ワン</span>
-              <span className="text-[9px] sm:text-[10px] text-muted-foreground leading-none tracking-wider">KANRI ONE</span>
-            </div>
+            <span className="font-bold text-foreground text-base sm:text-lg leading-tight">監理ワン</span>
           </a>
 
           {/* Desktop Navigation */}

@@ -12,10 +12,7 @@ export function Footer() {
                   <path d="M12 4V12L17 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-foreground" />
                 </svg>
               </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-background text-base sm:text-lg leading-tight">監理ワン</span>
-                <span className="text-[9px] sm:text-[10px] text-background/60 leading-none tracking-wider">KANRI ONE</span>
-              </div>
+              <span className="font-bold text-background text-base sm:text-lg leading-tight">監理ワン</span>
             </div>
             <p className="text-background/70 text-xs sm:text-sm leading-relaxed max-w-sm">
               監理団体・登録支援機関の業務を徹底的に効率化。
@@ -49,7 +46,7 @@ export function Footer() {
 
         <div className="pt-6 sm:pt-8 border-t border-background/20 text-center">
           <p className="text-xs sm:text-sm text-background/50">
-            © 2026 監理ワン（Kanri One）. All rights reserved.
+            © 2026 監理ワン. All rights reserved.
           </p>
         </div>
       </div>
