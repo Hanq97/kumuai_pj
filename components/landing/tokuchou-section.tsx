@@ -26,10 +26,10 @@ const characteristics = [
 export function TokuchouSection() {
   return (
     <section id="tokuchou" className="py-12 lg:py-16 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-3 text-balance">
-            ゼロマネの<span className="text-primary">特徴</span>
+            監理ワンの<span className="text-primary">特徴</span>
           </h2>
           <p className="text-sm sm:text-base text-muted-foreground">
             シンプルで使いやすい機能で、業務効率を最大化します

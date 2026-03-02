@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { FileText, Download } from "lucide-react"
 import Image from "next/image"
@@ -15,7 +16,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center bg-background overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary via-background to-background" />
-      <div className="container relative mx-auto px-4 py-12 lg:py-20">
+      <div className="container relative mx-auto px-5 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Text Content - Left Side */}
           <div className="text-center lg:text-left">
@@ -52,9 +53,12 @@ export function HeroSection() {
                 size="lg" 
                 variant="outline" 
                 className="text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent transition-colors"
+                asChild
               >
-                <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                資料ダウンロード
+                <Link href="/download">
+                  <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  資料ダウンロード
+                </Link>
               </Button>
             </div>
             
@@ -68,7 +72,7 @@ export function HeroSection() {
             <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
               <Image
                 src="/images/hero-dashboard.jpg"
-                alt="ゼロマネ管理画面のイメージ"
+                alt="監理ワン管理画面のイメージ"
                 fill
                 className="object-cover"
                 priority

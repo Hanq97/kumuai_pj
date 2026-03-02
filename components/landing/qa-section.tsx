@@ -55,11 +55,11 @@ export function QASection() {
 
   return (
     <section id="qa" className="py-12 lg:py-16 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
           <p className="text-primary font-medium mb-1 sm:mb-2 text-xs sm:text-sm">Q & A</p>
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground text-balance">
-            ゼロマネを導入する前に
+            監理ワンを導入する前に
             <br />
             <span className="text-primary">よくいただくご質問</span>
           </h2>

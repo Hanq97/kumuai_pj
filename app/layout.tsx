@@ -10,7 +10,7 @@ const notoSansJP = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
-  title: 'ゼロマネ | 監理団体・登録支援機関向け業務効率化システム',
+  title: '監理ワン | 監理団体・登録支援機関向け業務効率化システム',
   description: '2027年育成就労制度対応。書類作成の自動化、法改正への自動追従、AIチャットボットで監理業務を徹底的に効率化。30日間無料体験実施中。',
   generator: 'v0.app',
   keywords: ['監理団体', '登録支援機関', '技能実習', '特定技能', '育成就労', '業務効率化', '書類作成'],
