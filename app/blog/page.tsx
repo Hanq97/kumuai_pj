@@ -77,7 +77,7 @@ export default function BlogPage() {
                 className="group bg-card rounded-xl border border-border overflow-hidden hover:shadow-lg transition-shadow"
               >
                 {/* Thumbnail */}
-                <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden">
+                <Link href={`/blog/${post.slug}`} className="block relative aspect-video overflow-hidden bg-muted">
                   <Image
                     src={post.thumbnail}
                     alt={post.title}
@@ -85,10 +85,10 @@ export default function BlogPage() {
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   {post.isImportant && (
-                    <div className="absolute top-2 sm:top-3 left-2 sm:left-3 flex items-center gap-1 px-2 py-1 bg-destructive text-destructive-foreground rounded text-[10px] sm:text-xs font-medium">
+                    <span className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 inline-flex items-center gap-1 px-2 py-1 bg-destructive text-destructive-foreground rounded text-[10px] sm:text-xs font-medium">
                       <AlertTriangle className="h-3 w-3" />
                       重要
-                    </div>
+                    </span>
                   )}
                 </Link>
 
