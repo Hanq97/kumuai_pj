@@ -84,12 +84,7 @@ export default function BlogPage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  {post.isImportant && (
-                    <span className="absolute top-2 sm:top-3 left-2 sm:left-3 z-10 inline-flex items-center gap-1 px-2 py-1 bg-destructive text-destructive-foreground rounded text-[10px] sm:text-xs font-medium">
-                      <AlertTriangle className="h-3 w-3" />
-                      重要
-                    </span>
-                  )}
+
                 </Link>
 
                 {/* Content */}
