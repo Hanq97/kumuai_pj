@@ -37,8 +37,8 @@ export function Footer() {
             <h4 className="text-sm sm:text-base font-semibold text-background mb-3 sm:mb-4">会社情報</h4>
             <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-background/70">
               <li><a href="#" className="hover:text-background transition-colors">運営会社</a></li>
-              <li><a href="/privacy" className="hover:text-background transition-colors">プライバシーポリシー</a></li>
-              <li><a href="/terms" className="hover:text-background transition-colors">利用規約</a></li>
+              <li><a href="/privacy" className="hover:text-background transition-colors" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
+              <li><a href="/terms" className="hover:text-background transition-colors" target="_blank" rel="noopener noreferrer">利用規約</a></li>
               <li><a href="/tokusho" className="hover:text-background transition-colors">特定商取引法に基づく表記</a></li>
             </ul>
           </div>

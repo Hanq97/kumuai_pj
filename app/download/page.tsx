@@ -8,7 +8,7 @@ import { BlogFooter } from "@/components/blog/blog-footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CheckCircle, Phone, ExternalLink } from "lucide-react"
+import { CheckCircle, Phone } from "lucide-react"
 
 const documentContents = [
   "監理ワンでできること",
@@ -44,19 +44,19 @@ export default function DownloadPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <BlogHeader />
-      
+
       {/* Main Content */}
       <main className="flex-1 pt-20 sm:pt-24">
         <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-10 sm:py-14">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 max-w-6xl mx-auto">
-            
+
             {/* Left Side - Document Info */}
             <div className="flex-1">
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary text-center lg:text-left mb-8 leading-tight">
                 3分で分かる監理ワン<br />
                 資料をダウンロード
               </h1>
-              
+
               {/* Document Preview */}
               <div className="relative w-full max-w-md mx-auto lg:mx-0 mb-8">
                 <Image
@@ -67,7 +67,7 @@ export default function DownloadPage() {
                   className="w-full h-auto rounded-lg"
                 />
               </div>
-              
+
               {/* Document Contents */}
               <div className="space-y-2 mb-8">
                 {documentContents.map((content, index) => (
@@ -77,7 +77,7 @@ export default function DownloadPage() {
                   </p>
                 ))}
               </div>
-              
+
               {/* Target Users */}
               <div className="bg-secondary/50 rounded-xl p-5 sm:p-6 mb-8">
                 {targetUsers.map((user, index) => (
@@ -87,7 +87,7 @@ export default function DownloadPage() {
                   </div>
                 ))}
               </div>
-              
+
               {/* Phone Contact */}
               <div className="text-sm sm:text-base text-muted-foreground">
                 <p className="mb-2">お電話からも承っておりますのでご連絡ください。</p>
@@ -100,7 +100,7 @@ export default function DownloadPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Right Side - Form */}
             <div className="lg:w-[420px]">
               <div className="bg-card rounded-xl border border-border p-5 sm:p-6 lg:p-8 sticky top-24">
@@ -121,23 +121,13 @@ export default function DownloadPage() {
                   </div>
                 ) : (
                   <>
-                    <div className="text-center mb-6">
-                      <p className="text-sm text-muted-foreground mb-2">
-                        下記に入力フォームが表示されない場合は、<br />
-                        ボタンをクリックして開いて下さい。
-                      </p>
-                      <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                        フォームを開く
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </div>
-                    
-                    <div className="border-t border-border pt-6">
-                      <p className="text-primary font-medium text-center mb-6">
+                    <div className="mb-6">
+                      <p className="text-primary font-medium text-center">
                         フォーム入力後、<br />
                         資料をダウンロードできます
                       </p>
-                      
+                    </div>
+
                       <form onSubmit={handleSubmit} className="space-y-5">
                         {/* Company Type */}
                         <div className="space-y-2">
@@ -156,7 +146,7 @@ export default function DownloadPage() {
                             <option value="other">その他</option>
                           </select>
                         </div>
-                        
+
                         {/* Company Name */}
                         <div className="space-y-2">
                           <Label htmlFor="company-name" className="text-sm font-medium">
@@ -169,7 +159,7 @@ export default function DownloadPage() {
                             className="bg-background text-sm"
                           />
                         </div>
-                        
+
                         {/* Name */}
                         <div className="grid grid-cols-2 gap-3">
                           <div className="space-y-2">
@@ -195,7 +185,7 @@ export default function DownloadPage() {
                             />
                           </div>
                         </div>
-                        
+
                         {/* Email */}
                         <div className="space-y-2">
                           <Label htmlFor="email" className="text-sm font-medium">
@@ -209,7 +199,7 @@ export default function DownloadPage() {
                             className="bg-background text-sm"
                           />
                         </div>
-                        
+
                         {/* Phone */}
                         <div className="space-y-2">
                           <Label htmlFor="phone" className="text-sm font-medium">
@@ -223,7 +213,7 @@ export default function DownloadPage() {
                           />
                           <p className="text-xs text-muted-foreground">ハイフン(-)無しで入力</p>
                         </div>
-                        
+
                         {/* Checkboxes */}
                         <div className="space-y-3">
                           <label className="flex items-start gap-2 cursor-pointer">
@@ -234,7 +224,7 @@ export default function DownloadPage() {
                               className="mt-1 h-4 w-4 rounded border-input text-primary focus:ring-primary"
                             />
                             <span className="text-sm text-muted-foreground">
-                              <Link href="/privacy" className="text-primary hover:underline">
+                              <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
                                 プライバシーポリシー
                               </Link>
                               に同意する
@@ -252,7 +242,7 @@ export default function DownloadPage() {
                             </span>
                           </label>
                         </div>
-                        
+
                         {/* Submit Button */}
                         <Button
                           type="submit"
