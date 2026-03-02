@@ -349,7 +349,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                   このシステムについて詳しく知る
                 </h3>
                 <p className="text-sm text-primary-foreground/80 mb-4">
-                  ゼロマネの機能や導入事例について、詳しくご説明いたします。
+                  監理ワンの機能や導入事例について、詳しくご説明いたします。
                 </p>
                 <Button 
                   className="w-full text-sm bg-accent hover:bg-accent/90 text-accent-foreground"

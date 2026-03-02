@@ -28,8 +28,8 @@ export function BlogHeader() {
               </svg>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-foreground text-base sm:text-lg leading-tight">ゼロマネ</span>
-              <span className="text-[9px] sm:text-[10px] text-muted-foreground leading-none tracking-wider">ZERO MANAGEMENT</span>
+              <span className="font-bold text-foreground text-base sm:text-lg leading-tight">監理ワン</span>
+              <span className="text-[9px] sm:text-[10px] text-muted-foreground leading-none tracking-wider">KANRI ONE</span>
             </div>
           </Link>
 

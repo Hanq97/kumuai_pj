@@ -68,7 +68,7 @@ export function HeroSection() {
             <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
               <Image
                 src="/images/hero-dashboard.jpg"
-                alt="ゼロマネ管理画面のイメージ"
+                alt="監理ワン管理画面のイメージ"
                 fill
                 className="object-cover"
                 priority

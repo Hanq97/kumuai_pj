@@ -27,7 +27,7 @@ export function SolutionsSection() {
       <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-2 sm:mb-3 text-balance">
-            ゼロマネが提供する<span className="text-accent">「3つの解放」</span>
+            監理ワンが提供する<span className="text-accent">「3つの解放」</span>
           </h2>
         </div>
         

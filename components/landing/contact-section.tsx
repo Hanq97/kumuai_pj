@@ -63,7 +63,7 @@ export function ContactSection() {
                   <Mail className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-base sm:text-lg font-semibold text-primary">info@zeromane.jp</p>
+                  <p className="text-base sm:text-lg font-semibold text-primary">info@kanri-one.jp</p>
                   <p className="text-xs sm:text-sm text-muted-foreground">24時間受付中</p>
                 </div>
               </div>

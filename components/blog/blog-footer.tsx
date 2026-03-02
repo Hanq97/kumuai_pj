@@ -15,8 +15,8 @@ export function BlogFooter() {
                 </svg>
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-background text-base sm:text-lg leading-tight">ゼロマネ</span>
-                <span className="text-[9px] sm:text-[10px] text-background/60 leading-none tracking-wider">ZERO MANAGEMENT</span>
+                <span className="font-bold text-background text-base sm:text-lg leading-tight">監理ワン</span>
+                <span className="text-[9px] sm:text-[10px] text-background/60 leading-none tracking-wider">KANRI ONE</span>
               </div>
             </Link>
             <p className="text-background/70 text-xs sm:text-sm leading-relaxed max-w-sm">
@@ -51,7 +51,7 @@ export function BlogFooter() {
 
         <div className="pt-6 sm:pt-8 border-t border-background/20 text-center">
           <p className="text-xs sm:text-sm text-background/50">
-            © 2026 Zero Management（ゼロ・マネジメント）. All rights reserved.
+            © 2026 監理ワン（Kanri One）. All rights reserved.
           </p>
         </div>
       </div>

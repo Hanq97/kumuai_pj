@@ -46,7 +46,7 @@ const initialMessage: Message = {
 
 const responses: { [key: string]: { text: string; buttons?: ChatButton[] } } = {
   law_worry: {
-    text: "多くの監理団体・登録支援機関様が、同じ不安を抱えています。\n\nゼロマネなら\n・入管・OTIT様式に完全対応\n・法改正時も自動アップデート\n・書類作成はワンクリック\n\nご希望はどちらでしょうか？",
+    text: "多くの監理団体・登録支援機関様が、同じ不安を抱えています。\n\n監理ワンなら\n・入管・OTIT様式に完全対応\n・法改正時も自動アップデート\n・書類作成はワンクリック\n\nご希望はどちらでしょうか？",
     buttons: [
       { label: "無料デモを予約する", action: "contact_demo" },
       { label: "資料をダウンロード", action: "contact_document" },
@@ -54,7 +54,7 @@ const responses: { [key: string]: { text: string; buttons?: ChatButton[] } } = {
     ]
   },
   excel_limit: {
-    text: "Excel管理は、\n・ファイル破損\n・最新版が分からない\n・引き継ぎ不可\nといったリスクが高くなります。\n\nゼロマネでは\n・既存Excelを一括取込\n・データを一元管理\n・期限を自動監視します。\n\n現在の管理人数を教えてください。",
+    text: "Excel管理は、\n・ファイル破損\n・最新版が分からない\n・引き継ぎ不可\nといったリスクが高くなります。\n\n監理ワンでは\n・既存Excelを一括取込\n・データを一元管理\n・期限を自動監視します。\n\n現在の管理人数を教えてください。",
     buttons: [
       { label: "50名未満", action: "scale_small" },
       { label: "50〜200名", action: "scale_medium" },
@@ -62,7 +62,7 @@ const responses: { [key: string]: { text: string; buttons?: ChatButton[] } } = {
     ]
   },
   deadline_fear: {
-    text: "最も危険なのは「忘れてしまうこと」です。\n\nゼロマネは\n・在留期限を4ヶ月前から自動通知\n・対応履歴を完全記録\n・「言った・言わない」を防止\n\nご確認されますか？",
+    text: "最も危険なのは「忘れてしまうこと」です。\n\n監理ワンは\n・在留期限を4ヶ月前から自動通知\n・対応履歴を完全記録\n・「言った・言わない」を防止\n\nご確認されますか？",
     buttons: [
       { label: "期限管理の仕組みを見る", action: "contact_demo" },
       { label: "30日間無料で試す", action: "contact_trial" }
@@ -302,7 +302,7 @@ export function Chatbot() {
               <Bot className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-semibold text-sm">ゼロマネ</h3>
+              <h3 className="font-semibold text-sm">監理ワン</h3>
               <p className="text-xs text-primary-foreground/70">24時間対応</p>
             </div>
           </div>

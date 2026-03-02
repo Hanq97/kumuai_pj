@@ -137,7 +137,7 @@ export default function BlogPage() {
                 2027年の法改正、準備はできていますか？
               </h3>
               <p className="text-sm sm:text-base text-primary-foreground/80 mb-4 sm:mb-6">
-                ゼロマネなら、法改正への対応も自動で完了します。
+                監理ワンなら、法改正への対応も自動で完了します。
               </p>
               <Button 
                 size="lg"
