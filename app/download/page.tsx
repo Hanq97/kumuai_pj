@@ -252,16 +252,15 @@ export default function DownloadPage() {
                         {isSubmitting ? "送信中..." : "ダウンロードする"}
                       </Button>
                     </form>
-                  </div>
-              </>
+                  </>
                 )}
+              </div>
             </div>
           </div>
         </div>
-    </div>
-      </main >
+      </main>
 
-    <BlogFooter />
-    </div >
+      <BlogFooter />
+    </div>
   )
 }
