@@ -25,7 +25,7 @@ const qaItems = [
     answer: "スマートフォンやタブレット（iPad）でも対応しております。\nただし、画面が小さいと編集もしずらいので、人材管理としてご利用ください。",
   },
   {
-    question: "CSVファイルで出したりすることは可能でしょうか？",
+    question: "CSVファイルで出したりすることは可能ですか？",
     answer: "はい、各種データをCSV形式でエクスポートできます。また、Excel・Word形式での書類出力にも対応しております。",
   },
   {
@@ -64,32 +64,29 @@ export function QASection() {
             <span className="text-primary">よくいただくご質問</span>
           </h2>
         </div>
-        
+
         <div className="max-w-3xl mx-auto flex flex-col gap-2 sm:gap-3">
           {qaItems.map((item, index) => {
             const isOpen = openIndex === index
             return (
-              <div 
+              <div
                 key={index}
                 className="rounded-lg border border-border overflow-hidden"
               >
                 <button
                   onClick={() => toggleItem(index)}
-                  className={`w-full flex items-center justify-between px-3 sm:px-5 py-3 sm:py-4 text-left transition-colors cursor-pointer ${
-                    isOpen 
-                      ? "bg-primary" 
+                  className={`w-full flex items-center justify-between px-3 sm:px-5 py-3 sm:py-4 text-left transition-colors cursor-pointer ${isOpen
+                      ? "bg-primary"
                       : "bg-card hover:bg-secondary/50"
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2 sm:gap-4 min-w-0">
-                    <span className={`font-bold text-sm sm:text-lg shrink-0 ${
-                      isOpen ? "text-primary-foreground" : "text-primary"
-                    }`}>
+                    <span className={`font-bold text-sm sm:text-lg shrink-0 ${isOpen ? "text-primary-foreground" : "text-primary"
+                      }`}>
                       Q{index + 1}
                     </span>
-                    <span className={`font-medium text-sm sm:text-base ${
-                      isOpen ? "text-primary-foreground" : "text-foreground"
-                    }`}>
+                    <span className={`font-medium text-sm sm:text-base ${isOpen ? "text-primary-foreground" : "text-foreground"
+                      }`}>
                       {item.question}
                     </span>
                   </div>
@@ -99,7 +96,7 @@ export function QASection() {
                     <Plus className="h-4 w-4 sm:h-5 sm:w-5 shrink-0 ml-2 text-primary" />
                   )}
                 </button>
-                
+
                 {isOpen && (
                   <div className="bg-card px-3 sm:px-5 py-3 sm:py-4 pl-10 sm:pl-16">
                     <p className="text-sm sm:text-base text-muted-foreground leading-relaxed whitespace-pre-line">
