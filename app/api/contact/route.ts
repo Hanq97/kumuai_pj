@@ -43,7 +43,7 @@ export async function POST(request: Request) {
         from: FROM_EMAIL,
         replyTo: email,
         to: [ADMIN_EMAIL],
-        subject: `【監理ワン】新しいお問い合わせ - ${inquiryTypeLabels[inquiryType] || inquiryType}`,
+        subject: `【監理ワン】新しいお問い合わせ`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #0f3a5d;">新しいお問い合わせがありました</h2>

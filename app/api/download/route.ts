@@ -45,7 +45,7 @@ export async function POST(request: Request) {
         from: FROM_EMAIL,
         replyTo: email,
         to: [ADMIN_EMAIL],
-        subject: `【監理ワン】新しい資料ダウンロード - ${companyName}`,
+        subject: `【監理ワン】新しい資料ダウンロード`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #0f3a5d;">新しい資料ダウンロードリクエスト</h2>
@@ -69,16 +69,16 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: FROM_EMAIL,
         to: [email],
-        subject: "【監理ワン】資料をお届けいたします",
+        subject: "【監理ワン】資料ダウンロードありがとうございます",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #0f3a5d;">資料ダウンロードのご案内</h2>
+            <h2 style="color: #0f3a5d;">資料ダウンロードありがとうございます</h2>
             <p>${fullName} 様</p>
             <p>この度は監理ワンの資料をご請求いただき、誠にありがとうございます。</p>
-            <p>以下のリンクより資料をダウンロードいただけます。</p>
+            <p>以下のリンクから資料をダウンロードしてください。</p>
             <div style="text-align: center; margin: 24px 0;">
-              <a href="https://kanri-one.jp/documents/kanri-one-guide.pdf" 
-                 style="display: inline-block; background: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+              <a href="https://example.com/download/kanri-one.pdf" 
+                 style="display: inline-block; background: #0f3a5d; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
                 資料をダウンロード
               </a>
             </div>
