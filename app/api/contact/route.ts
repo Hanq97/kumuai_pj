@@ -71,6 +71,9 @@ export async function POST(request: Request) {
       `,
     })
 
+    // Add delay to avoid Mailtrap rate limit
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
     // Send confirmation email to user
     await transporter.sendMail({
       from: FROM_EMAIL,
