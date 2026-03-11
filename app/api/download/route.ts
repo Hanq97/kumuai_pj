@@ -53,9 +53,10 @@ export async function POST(request: Request) {
       },
     })
 
-    // Send notification email to admin
+    // Send notification email to admin (from user's email)
     await transporter.sendMail({
-      from: FROM_EMAIL,
+      from: `${fullName} <${email}>`,
+      replyTo: email,
       to: ADMIN_EMAIL,
       subject: `【監理ワン】新しい資料ダウンロード - ${companyName}`,
       html: `
