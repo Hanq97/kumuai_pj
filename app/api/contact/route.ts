@@ -7,8 +7,13 @@ const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
 
 export async function POST(request: Request) {
   try {
+    // Debug: Check if env var exists
+    const apiKey = process.env.RESEND_API_KEY
+    console.log("[v0] RESEND_API_KEY exists:", !!apiKey)
+    console.log("[v0] RESEND_API_KEY starts with:", apiKey?.substring(0, 6) || "undefined")
+    
     // Check for API key
-    if (!process.env.RESEND_API_KEY) {
+    if (!apiKey) {
       console.error("[v0] RESEND_API_KEY is not set")
       return NextResponse.json(
         { error: "メール設定が完了していません。管理者にお問い合わせください。" },
@@ -16,7 +21,7 @@ export async function POST(request: Request) {
       )
     }
     
-    const resend = new Resend(process.env.RESEND_API_KEY)
+    const resend = new Resend(apiKey)
     
     const body = await request.json()
     const { organization, name, email, phone, inquiryType, message } = body
