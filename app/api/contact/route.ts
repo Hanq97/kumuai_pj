@@ -1,18 +1,25 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // Use Resend's test domain for development, or your verified domain for production
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
 
 export async function POST(request: Request) {
   try {
+    // Check for API key
+    if (!process.env.RESEND_API_KEY) {
+      console.error("[v0] RESEND_API_KEY is not set")
+      return NextResponse.json(
+        { error: "メール設定が完了していません。管理者にお問い合わせください。" },
+        { status: 500 }
+      )
+    }
+    
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    
     const body = await request.json()
     const { organization, name, email, phone, inquiryType, message } = body
-
-    console.log("[v0] Contact form submission received:", { organization, name, email, inquiryType })
 
     // Validate required fields
     if (!organization || !name || !email || !inquiryType) {
