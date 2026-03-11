@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-// Use Resend's test domain for development, or your verified domain for production
+// Email configuration - Use Resend's test domain for development, or your verified domain for production
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
 
