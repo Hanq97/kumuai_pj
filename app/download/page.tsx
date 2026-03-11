@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckCircle, Phone } from "lucide-react"
+import { toast } from "sonner"
 
 const documentContents = [
   "監理ワンでできること",
@@ -61,8 +62,14 @@ export default function DownloadPage() {
       }
       
       setIsSubmitted(true)
+      toast.success("資料をメールでお送りしました", {
+        description: "ご入力いただいたメールアドレスをご確認ください。",
+      })
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
+      toast.error("送信に失敗しました", {
+        description: "もう一度お試しください。",
+      })
     } finally {
       setIsSubmitting(false)
     }

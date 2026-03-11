@@ -3,13 +3,20 @@ import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// Use Resend's test domain for development, or your verified domain for production
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
     const { companyType, companyName, lastName, firstName, email, phone, agreeNewsletter } = body
 
+    console.log("[v0] Download form submission received:", { companyName, lastName, firstName, email })
+
     // Validate required fields
     if (!companyType || !companyName || !lastName || !firstName || !email) {
+      console.log("[v0] Validation failed - missing fields")
       return NextResponse.json(
         { error: "必須項目が入力されていません" },
         { status: 400 }
@@ -25,10 +32,12 @@ export async function POST(request: Request) {
 
     const fullName = `${lastName} ${firstName}`
 
+    console.log("[v0] Sending admin notification email...")
+
     // Send notification email to admin
-    await resend.emails.send({
-      from: "監理ワン <noreply@kanri-one.jp>",
-      to: ["info@kanri-one.jp"], // Change to your actual admin email
+    const adminEmailResult = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [ADMIN_EMAIL],
       subject: `【監理ワン】資料ダウンロード申込：${companyName}`,
       html: `
         <h2>資料ダウンロードの申込がありました</h2>
@@ -61,9 +70,12 @@ export async function POST(request: Request) {
       `,
     })
 
+    console.log("[v0] Admin email sent:", adminEmailResult)
+    console.log("[v0] Sending document email to user:", email)
+
     // Send document email to user
-    await resend.emails.send({
-      from: "監理ワン <noreply@kanri-one.jp>",
+    const userEmailResult = await resend.emails.send({
+      from: FROM_EMAIL,
       to: [email],
       subject: "【監理ワン】資料ダウンロードのご案内",
       html: `
@@ -112,9 +124,12 @@ export async function POST(request: Request) {
       `,
     })
 
+    console.log("[v0] User email sent:", userEmailResult)
+    console.log("[v0] Download form submission completed successfully")
+
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Email sending error:", error)
+    console.error("[v0] Email sending error:", error)
     return NextResponse.json(
       { error: "メール送信に失敗しました" },
       { status: 500 }

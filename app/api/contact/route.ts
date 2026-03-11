@@ -3,13 +3,20 @@ import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// Use Resend's test domain for development, or your verified domain for production
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
     const { organization, name, email, phone, inquiryType, message } = body
 
+    console.log("[v0] Contact form submission received:", { organization, name, email, inquiryType })
+
     // Validate required fields
     if (!organization || !name || !email || !inquiryType) {
+      console.log("[v0] Validation failed - missing fields")
       return NextResponse.json(
         { error: "必須項目が入力されていません" },
         { status: 400 }
@@ -23,10 +30,12 @@ export async function POST(request: Request) {
       other: "その他のご相談",
     }
 
+    console.log("[v0] Sending admin notification email...")
+    
     // Send notification email to admin
-    await resend.emails.send({
-      from: "監理ワン <noreply@kanri-one.jp>",
-      to: ["info@kanri-one.jp"], // Change to your actual admin email
+    const adminEmailResult = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: [ADMIN_EMAIL],
       subject: `【監理ワン】新規お問い合わせ：${inquiryTypeLabels[inquiryType] || inquiryType}`,
       html: `
         <h2>新規お問い合わせがありました</h2>
@@ -58,10 +67,13 @@ export async function POST(request: Request) {
         </table>
       `,
     })
+    
+    console.log("[v0] Admin email sent:", adminEmailResult)
+    console.log("[v0] Sending confirmation email to user:", email)
 
     // Send confirmation email to user
-    await resend.emails.send({
-      from: "監理ワン <noreply@kanri-one.jp>",
+    const userEmailResult = await resend.emails.send({
+      from: FROM_EMAIL,
       to: [email],
       subject: "【監理ワン】お問い合わせありがとうございます",
       html: `
@@ -95,10 +107,13 @@ export async function POST(request: Request) {
         </div>
       `,
     })
+    
+    console.log("[v0] User email sent:", userEmailResult)
+    console.log("[v0] Contact form submission completed successfully")
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("Email sending error:", error)
+    console.error("[v0] Email sending error:", error)
     return NextResponse.json(
       { error: "メール送信に失敗しました" },
       { status: 500 }

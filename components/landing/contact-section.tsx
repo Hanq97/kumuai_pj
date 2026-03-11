@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Phone, Mail, Send, CheckCircle } from "lucide-react"
+import { toast } from "sonner"
 
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -41,8 +42,14 @@ export function ContactSection() {
       }
       
       setIsSubmitted(true)
+      toast.success("お問い合わせを送信しました", {
+        description: "担当者より2営業日以内にご連絡いたします。",
+      })
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
+      toast.error("送信に失敗しました", {
+        description: "もう一度お試しください。",
+      })
     } finally {
       setIsSubmitting(false)
     }
