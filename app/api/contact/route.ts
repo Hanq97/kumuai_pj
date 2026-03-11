@@ -1,13 +1,9 @@
 import { NextResponse } from "next/server"
-import nodemailer from "nodemailer"
+import { Resend } from "resend"
 
-// SMTP configuration for Mailtrap or any SMTP provider
-const SMTP_HOST = process.env.SMTP_HOST || "sandbox.smtp.mailtrap.io"
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587")
-const SMTP_USER = process.env.SMTP_USER
-const SMTP_PASS = process.env.SMTP_PASS
-const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || "noreply@kanri-one.jp"
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@kanri-one.jp"
+// Email configuration
+const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
 
 export async function POST(request: Request) {
   try {
@@ -29,34 +25,24 @@ export async function POST(request: Request) {
       other: "その他のご相談",
     }
 
-    // Check if SMTP is configured
-    if (!SMTP_USER || !SMTP_PASS) {
-      console.log("[v0] SMTP not configured, skipping email send")
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.log("[v0] RESEND_API_KEY not configured, skipping email send")
       console.log("[v0] Contact form data:", { organization, name, email, inquiryType, message })
-      // Return success even without email - don't block the user
       return NextResponse.json({ 
         success: true, 
         message: "お問い合わせを受け付けました（メール送信はスキップされました）" 
       })
     }
 
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: SMTP_PORT,
-      secure: SMTP_PORT === 465,
-      auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS,
-      },
-    })
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
-    // Send notification email to admin (from user's email)
+    // Send notification email to admin
     try {
-      await transporter.sendMail({
-        from: `${name} <${email}>`,
+      await resend.emails.send({
+        from: FROM_EMAIL,
         replyTo: email,
-        to: ADMIN_EMAIL,
+        to: [ADMIN_EMAIL],
         subject: `【監理ワン】新しいお問い合わせ - ${inquiryTypeLabels[inquiryType] || inquiryType}`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -76,14 +62,11 @@ export async function POST(request: Request) {
       console.error("[v0] Failed to send admin email:", adminEmailError)
     }
 
-    // Add delay to avoid Mailtrap rate limit (2 seconds for safety)
-    await new Promise(resolve => setTimeout(resolve, 2000))
-
     // Send confirmation email to user
     try {
-      await transporter.sendMail({
+      await resend.emails.send({
         from: FROM_EMAIL,
-        to: email,
+        to: [email],
         subject: "【監理ワン】お問い合わせありがとうございます",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -108,7 +91,6 @@ export async function POST(request: Request) {
       console.error("[v0] Failed to send user email:", userEmailError)
     }
 
-    // Always return success - form submission is complete even if some emails fail
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("[v0] Email sending error:", error)
