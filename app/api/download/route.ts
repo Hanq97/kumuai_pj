@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
-// Email configuration
+// v2 - Email configuration with nodemailer
 const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || "noreply@kanri-one.jp"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@kanri-one.jp"
 
