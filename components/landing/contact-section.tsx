@@ -7,11 +7,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Phone, Mail, Send, CheckCircle } from "lucide-react"
+import { Phone, Mail, Send } from "lucide-react"
 import { toast } from "sonner"
 
 export function ContactSection() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -20,7 +19,8 @@ export function ContactSection() {
     setIsSubmitting(true)
     setError(null)
     
-    const formData = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const formData = new FormData(form)
     const data = {
       organization: formData.get("organization"),
       name: formData.get("name"),
@@ -41,10 +41,11 @@ export function ContactSection() {
         throw new Error("送信に失敗しました")
       }
       
-      setIsSubmitted(true)
+      // Show toast and reset form
       toast.success("お問い合わせを送信しました", {
         description: "担当者より2営業日以内にご連絡いたします。",
       })
+      form.reset()
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
       toast.error("送信に失敗しました", {
@@ -113,20 +114,7 @@ export function ContactSection() {
           
           {/* Contact Form */}
           <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border">
-            {isSubmitted ? (
-              <div className="flex flex-col items-center justify-center py-8 sm:py-12 text-center">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-accent/10 flex items-center justify-center mb-4 sm:mb-6">
-                  <CheckCircle className="h-7 w-7 sm:h-8 sm:w-8 text-accent" />
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">
-                  送信完了しました
-                </h3>
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  担当者より2営業日以内にご連絡いたします。
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                   <div className="space-y-1.5 sm:space-y-2">
                     <Label htmlFor="organization" className="text-sm">団体名・会社名 <span className="text-destructive">*</span></Label>
@@ -224,7 +212,6 @@ export function ContactSection() {
                   ※ お送りいただいた情報は、お問い合わせへの回答以外の目的では使用いたしません。
                 </p>
               </form>
-            )}
           </div>
         </div>
       </div>
