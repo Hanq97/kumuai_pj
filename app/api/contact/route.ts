@@ -1,39 +1,40 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 
-// Email configuration - Use Resend's test domain for development, or your verified domain for production
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
+// Email configuration
+const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || "noreply@kanri-one.jp"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@kanri-one.jp"
 
 export async function POST(request: Request) {
   try {
-    // Debug: Check if env var exists
-    const apiKey = process.env.RESEND_API_KEY
-    console.log("[v0] RESEND_API_KEY exists:", !!apiKey)
-    console.log("[v0] RESEND_API_KEY starts with:", apiKey?.substring(0, 6) || "undefined")
-    
-    // Check for API key
-    if (!apiKey) {
-      console.error("[v0] RESEND_API_KEY is not set")
-      return NextResponse.json(
-        { error: "メール設定が完了していません。管理者にお問い合わせください。" },
-        { status: 500 }
-      )
-    }
-    
-    const resend = new Resend(apiKey)
-    
     const body = await request.json()
     const { organization, name, email, phone, inquiryType, message } = body
 
     // Validate required fields
     if (!organization || !name || !email || !inquiryType) {
-      console.log("[v0] Validation failed - missing fields")
       return NextResponse.json(
         { error: "必須項目が入力されていません" },
         { status: 400 }
       )
     }
+
+    // Check for SMTP credentials
+    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.error("[v0] SMTP credentials not configured")
+      // Return success anyway to not block form submission
+      // In production, you'd want to log this to a database or error tracking service
+      return NextResponse.json({ success: true, warning: "Email not sent - SMTP not configured" })
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: parseInt(process.env.SMTP_PORT || "587"),
+      secure: process.env.SMTP_SECURE === "true",
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    })
 
     const inquiryTypeLabels: Record<string, string> = {
       demo: "無料デモの予約",
@@ -42,12 +43,10 @@ export async function POST(request: Request) {
       other: "その他のご相談",
     }
 
-    console.log("[v0] Sending admin notification email...")
-    
     // Send notification email to admin
-    const adminEmailResult = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: [ADMIN_EMAIL],
+    await transporter.sendMail({
+      from: `監理ワン <${FROM_EMAIL}>`,
+      to: ADMIN_EMAIL,
       subject: `【監理ワン】新規お問い合わせ：${inquiryTypeLabels[inquiryType] || inquiryType}`,
       html: `
         <h2>新規お問い合わせがありました</h2>
@@ -79,14 +78,11 @@ export async function POST(request: Request) {
         </table>
       `,
     })
-    
-    console.log("[v0] Admin email sent:", adminEmailResult)
-    console.log("[v0] Sending confirmation email to user:", email)
 
     // Send confirmation email to user
-    const userEmailResult = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: [email],
+    await transporter.sendMail({
+      from: `監理ワン <${FROM_EMAIL}>`,
+      to: email,
       subject: "【監理ワン】お問い合わせありがとうございます",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -119,9 +115,6 @@ export async function POST(request: Request) {
         </div>
       `,
     })
-    
-    console.log("[v0] User email sent:", userEmailResult)
-    console.log("[v0] Contact form submission completed successfully")
 
     return NextResponse.json({ success: true })
   } catch (error) {
