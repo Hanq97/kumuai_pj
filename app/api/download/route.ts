@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
-// v2 - Email configuration with nodemailer
+// SMTP configuration for Mailtrap or any SMTP provider
+const SMTP_HOST = process.env.SMTP_HOST || "sandbox.smtp.mailtrap.io"
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587")
+const SMTP_USER = process.env.SMTP_USER
+const SMTP_PASS = process.env.SMTP_PASS
 const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || "noreply@kanri-one.jp"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@kanri-one.jp"
 
@@ -18,23 +22,6 @@ export async function POST(request: Request) {
       )
     }
 
-    // Check for SMTP credentials
-    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
-      console.error("[v0] SMTP credentials not configured")
-      // Return success anyway to not block form submission
-      return NextResponse.json({ success: true, warning: "Email not sent - SMTP not configured" })
-    }
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || "587"),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-
     const companyTypeLabels: Record<string, string> = {
       kumiai: "監理団体",
       touroku: "登録支援機関",
@@ -44,83 +31,71 @@ export async function POST(request: Request) {
 
     const fullName = `${lastName} ${firstName}`
 
+    // Check if SMTP is configured
+    if (!SMTP_USER || !SMTP_PASS) {
+      console.log("[v0] SMTP not configured, skipping email send")
+      console.log("[v0] Download form data:", { companyName, fullName, email, companyType })
+      // Return success even without email - don't block the user
+      return NextResponse.json({ 
+        success: true, 
+        message: "資料請求を受け付けました（メール送信はスキップされました）" 
+      })
+    }
+
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: SMTP_PORT,
+      secure: SMTP_PORT === 465,
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+      },
+    })
+
     // Send notification email to admin
     await transporter.sendMail({
-      from: `監理ワン <${FROM_EMAIL}>`,
+      from: FROM_EMAIL,
       to: ADMIN_EMAIL,
-      subject: "【監理ワン】資料ダウンロード申込がありました",
+      subject: `【監理ワン】新しい資料ダウンロード - ${companyName}`,
       html: `
-        <h2>資料ダウンロード申込がありました</h2>
-        <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">企業区分</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${companyTypeLabels[companyType] || companyType}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">会社名</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${companyName}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">お名前</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${fullName}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">メールアドレス</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">電話番号</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${phone || "未入力"}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">メルマガ配信</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${agreeNewsletter ? "希望する" : "希望しない"}</td>
-          </tr>
-        </table>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #0f3a5d;">新しい資料ダウンロードリクエスト</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">企業区分</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${companyTypeLabels[companyType] || companyType}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">会社名</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${companyName}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お名前</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${fullName}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">メールアドレス</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${email}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">電話番号</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${phone || "未入力"}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">ニュースレター</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${agreeNewsletter ? "希望する" : "希望しない"}</td></tr>
+          </table>
+        </div>
       `,
     })
 
     // Send document email to user
     await transporter.sendMail({
-      from: `監理ワン <${FROM_EMAIL}>`,
+      from: FROM_EMAIL,
       to: email,
-      subject: "【監理ワン】資料ダウンロードのご案内",
+      subject: "【監理ワン】資料をお届けいたします",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af;">資料ダウンロードのご案内</h2>
+          <h2 style="color: #0f3a5d;">資料ダウンロードのご案内</h2>
           <p>${fullName} 様</p>
           <p>この度は監理ワンの資料をご請求いただき、誠にありがとうございます。</p>
-          
-          <div style="background: #f0f9ff; border: 2px solid #1e40af; padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center;">
-            <p style="margin: 0 0 15px 0; font-weight: bold; color: #1e40af;">資料ダウンロード</p>
+          <p>以下のリンクより資料をダウンロードいただけます。</p>
+          <div style="text-align: center; margin: 24px 0;">
             <a href="https://kanri-one.jp/documents/kanri-one-guide.pdf" 
-               style="display: inline-block; background: #1e40af; color: white; padding: 12px 30px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+               style="display: inline-block; background: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
               資料をダウンロード
             </a>
-            <p style="margin: 15px 0 0 0; font-size: 12px; color: #666;">
-              ※ リンクは7日間有効です
-            </p>
           </div>
-          
-          <h3 style="color: #1e40af; margin-top: 30px;">資料の内容</h3>
-          <ul style="color: #333; line-height: 1.8;">
-            <li>監理ワンでできること</li>
-            <li>導入実績や選べる理由について</li>
-            <li>機能一覧・良くある質問など</li>
-          </ul>
-          
-          <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;" />
-          
-          <p style="color: #666; font-size: 14px;">
-            ご不明点がございましたら、お気軽にお問い合わせください。<br>
-            デモのご予約も承っております。
+          <p>ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+          <p style="color: #666; font-size: 12px;">
+            監理ワン<br />
+            Email: support@kanri-one.jp
           </p>
-          
-          <div style="background: #1e40af; color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
-            <p style="margin: 0 0 5px 0; font-weight: bold;">監理ワン</p>
-            <p style="margin: 0 0 5px 0; font-size: 14px;">Email: info@kanri-one.jp</p>
-            <p style="margin: 0; font-size: 14px;">Tel: 03-XXXX-XXXX（平日 9:00〜18:00）</p>
-          </div>
         </div>
       `,
     })

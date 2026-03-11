@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
-// v2 - Email configuration with nodemailer
+// SMTP configuration for Mailtrap or any SMTP provider
+const SMTP_HOST = process.env.SMTP_HOST || "sandbox.smtp.mailtrap.io"
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587")
+const SMTP_USER = process.env.SMTP_USER
+const SMTP_PASS = process.env.SMTP_PASS
 const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || "noreply@kanri-one.jp"
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@kanri-one.jp"
 
@@ -18,24 +22,6 @@ export async function POST(request: Request) {
       )
     }
 
-    // Check for SMTP credentials
-    if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
-      console.error("[v0] SMTP credentials not configured")
-      // Return success anyway to not block form submission
-      // In production, you'd want to log this to a database or error tracking service
-      return NextResponse.json({ success: true, warning: "Email not sent - SMTP not configured" })
-    }
-
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || "587"),
-      secure: process.env.SMTP_SECURE === "true",
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
-
     const inquiryTypeLabels: Record<string, string> = {
       demo: "無料デモの予約",
       document: "資料請求",
@@ -43,75 +29,69 @@ export async function POST(request: Request) {
       other: "その他のご相談",
     }
 
+    // Check if SMTP is configured
+    if (!SMTP_USER || !SMTP_PASS) {
+      console.log("[v0] SMTP not configured, skipping email send")
+      console.log("[v0] Contact form data:", { organization, name, email, inquiryType, message })
+      // Return success even without email - don't block the user
+      return NextResponse.json({ 
+        success: true, 
+        message: "お問い合わせを受け付けました（メール送信はスキップされました）" 
+      })
+    }
+
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: SMTP_PORT,
+      secure: SMTP_PORT === 465,
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+      },
+    })
+
     // Send notification email to admin
     await transporter.sendMail({
-      from: `監理ワン <${FROM_EMAIL}>`,
+      from: FROM_EMAIL,
       to: ADMIN_EMAIL,
-      subject: `【監理ワン】新規お問い合わせ：${inquiryTypeLabels[inquiryType] || inquiryType}`,
+      subject: `【監理ワン】新しいお問い合わせ - ${inquiryTypeLabels[inquiryType] || inquiryType}`,
       html: `
-        <h2>新規お問い合わせがありました</h2>
-        <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">団体名・会社名</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${organization}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">お名前</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${name}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">メールアドレス</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">電話番号</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${phone || "未入力"}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">お問い合わせ種別</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${inquiryTypeLabels[inquiryType] || inquiryType}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background: #f5f5f5; font-weight: bold;">お問い合わせ内容</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${message || "未入力"}</td>
-          </tr>
-        </table>
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #0f3a5d;">新しいお問い合わせがありました</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">団体名・会社名</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${organization}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お名前</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${name}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">メールアドレス</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${email}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">電話番号</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${phone || "未入力"}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お問い合わせ種別</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${inquiryTypeLabels[inquiryType] || inquiryType}</td></tr>
+            <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お問い合わせ内容</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${message || "未入力"}</td></tr>
+          </table>
+        </div>
       `,
     })
 
     // Send confirmation email to user
     await transporter.sendMail({
-      from: `監理ワン <${FROM_EMAIL}>`,
+      from: FROM_EMAIL,
       to: email,
       subject: "【監理ワン】お問い合わせありがとうございます",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #1e40af;">お問い合わせありがとうございます</h2>
+          <h2 style="color: #0f3a5d;">お問い合わせありがとうございます</h2>
           <p>${name} 様</p>
-          <p>この度は監理ワンへお問い合わせいただき、誠にありがとうございます。</p>
-          <p>以下の内容でお問い合わせを承りました。<br>担当者より2営業日以内にご連絡させていただきます。</p>
-          
-          <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <p style="margin: 0 0 10px 0;"><strong>団体名・会社名：</strong>${organization}</p>
-            <p style="margin: 0 0 10px 0;"><strong>お名前：</strong>${name}</p>
-            <p style="margin: 0 0 10px 0;"><strong>メールアドレス：</strong>${email}</p>
-            <p style="margin: 0 0 10px 0;"><strong>電話番号：</strong>${phone || "未入力"}</p>
-            <p style="margin: 0 0 10px 0;"><strong>お問い合わせ種別：</strong>${inquiryTypeLabels[inquiryType] || inquiryType}</p>
-            <p style="margin: 0;"><strong>お問い合わせ内容：</strong><br>${message || "未入力"}</p>
+          <p>この度は監理ワンにお問い合わせいただき、誠にありがとうございます。</p>
+          <p>以下の内容でお問い合わせを受け付けました。担当者より2営業日以内にご連絡いたします。</p>
+          <div style="background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <p style="margin: 4px 0;"><strong>団体名・会社名：</strong>${organization}</p>
+            <p style="margin: 4px 0;"><strong>お問い合わせ種別：</strong>${inquiryTypeLabels[inquiryType] || inquiryType}</p>
+            <p style="margin: 4px 0;"><strong>お問い合わせ内容：</strong>${message || "未入力"}</p>
           </div>
-          
-          <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;" />
-          
-          <p style="color: #666; font-size: 14px;">
-            ※ 本メールは自動送信されています。<br>
-            ※ ご不明点がございましたら、下記までお問い合わせください。
+          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+          <p style="color: #666; font-size: 12px;">
+            監理ワン<br />
+            Email: support@kanri-one.jp
           </p>
-          
-          <div style="background: #1e40af; color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
-            <p style="margin: 0 0 5px 0; font-weight: bold;">監理ワン</p>
-            <p style="margin: 0 0 5px 0; font-size: 14px;">Email: info@kanri-one.jp</p>
-            <p style="margin: 0; font-size: 14px;">Tel: 03-XXXX-XXXX（平日 9:00〜18:00）</p>
-          </div>
         </div>
       `,
     })
