@@ -2,6 +2,7 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from 'sonner'
 import './globals.css'
 
 const notoSansJP = Noto_Sans_JP({ 
@@ -42,6 +43,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJP.className} antialiased`}>
         {children}
+        <Toaster position="top-center" richColors />
         <Analytics />
       </body>
     </html>
