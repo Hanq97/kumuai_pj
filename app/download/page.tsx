@@ -25,7 +25,6 @@ const targetUsers = [
 
 export default function DownloadPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
   const [agreePrivacy, setAgreePrivacy] = useState(false)
   const [agreeNewsletter, setAgreeNewsletter] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -33,13 +32,14 @@ export default function DownloadPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!agreePrivacy) {
-      alert("プライバシーポリシーに同意してください。")
+      toast.error("プライバシーポリシーに同意してください。")
       return
     }
     setIsSubmitting(true)
     setError(null)
     
-    const formData = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const formData = new FormData(form)
     const data = {
       companyType: formData.get("company-type"),
       companyName: formData.get("company-name"),
@@ -61,10 +61,13 @@ export default function DownloadPage() {
         throw new Error("送信に失敗しました")
       }
       
-      setIsSubmitted(true)
+      // Show toast and reset form
       toast.success("資料をメールでお送りしました", {
         description: "ご入力いただいたメールアドレスをご確認ください。",
       })
+      form.reset()
+      setAgreePrivacy(false)
+      setAgreeNewsletter(false)
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
       toast.error("送信に失敗しました", {
@@ -138,31 +141,14 @@ export default function DownloadPage() {
             {/* Right Side - Form */}
             <div className="lg:w-[420px]">
               <div className="bg-card rounded-xl border border-border p-5 sm:p-6 lg:p-8 sticky top-24">
-                {isSubmitted ? (
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle className="h-8 w-8 text-accent" />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      ダウンロードありがとうございます
-                    </h3>
-                    <p className="text-muted-foreground mb-6">
-                      ご入力いただいたメールアドレスに資料をお送りしました。
-                    </p>
-                    <Button asChild className="bg-primary hover:bg-primary/90">
-                      <Link href="/">トップページへ戻る</Link>
-                    </Button>
-                  </div>
-                ) : (
-                  <>
-                    <div className="mb-6">
-                      <p className="text-primary font-medium text-center">
-                        フォーム入力後、<br />
-                        資料をダウンロードできます
-                      </p>
-                    </div>
+                <div className="mb-6">
+                  <p className="text-primary font-medium text-center">
+                    フォーム入力後、<br />
+                    資料をダウンロードできます
+                  </p>
+                </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5">
                       {/* Company Type */}
                       <div className="space-y-2">
                         <Label htmlFor="company-type" className="text-sm font-medium">
@@ -296,8 +282,6 @@ export default function DownloadPage() {
                         {isSubmitting ? "送信中..." : "ダウンロードする"}
                       </Button>
                     </form>
-                  </>
-                )}
               </div>
             </div>
           </div>
