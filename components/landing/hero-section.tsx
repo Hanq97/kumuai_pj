@@ -22,22 +22,24 @@ export function HeroSection() {
           <div className="text-center lg:text-left">
             <div className="inline-block mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent/10 rounded-full">
               <span className="text-accent text-xs sm:text-sm font-medium">
-                2027年・育成就労制度対応
+                監理団体・登録支援機関・受入企業向け
               </span>
             </div>
             
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-4 sm:mb-6 text-balance">
-              <span className="text-primary">「管理」</span>を、仕事にしない。
+              全ての監理実務を、
+              <br />
+              <span className="text-primary">ひとつに。</span>
             </h1>
             
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-3 sm:mb-4 leading-relaxed">
-              2027年・育成就労制度への対応も、このシステムが勝手にやります。
+              技能実習・特定技能・育成就労。すべての制度をワンストップで管理。
             </p>
             
             <p className="text-sm sm:text-base text-muted-foreground mb-8 sm:mb-10 leading-relaxed">
-              面倒な書類作成は1クリック。法改正による書式変更も自動アップデート。
+              Excel管理の限界、散在するデータ、煩雑な手作業、複雑化する法規制。
               <br className="hidden md:block" />
-              あなたの時間を奪う「Excel管理」と「期限への恐怖」を、今日で終わりにしませんか？
+              監理ワンが、あなたの組織のポテンシャルを最大化します。
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
