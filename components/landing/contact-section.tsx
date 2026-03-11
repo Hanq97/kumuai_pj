@@ -12,16 +12,40 @@ import { Phone, Mail, Send, CheckCircle } from "lucide-react"
 export function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      organization: formData.get("organization"),
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      inquiryType: formData.get("inquiry-type"),
+      message: formData.get("message"),
+    }
     
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      
+      if (!response.ok) {
+        throw new Error("送信に失敗しました")
+      }
+      
+      setIsSubmitted(true)
+    } catch {
+      setError("送信に失敗しました。もう一度お試しください。")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -100,7 +124,8 @@ export function ContactSection() {
                   <div className="space-y-1.5 sm:space-y-2">
                     <Label htmlFor="organization" className="text-sm">団体名・会社名 <span className="text-destructive">*</span></Label>
                     <Input 
-                      id="organization" 
+                      id="organization"
+                      name="organization"
                       placeholder="例：〇〇協同組合" 
                       required 
                       className="bg-background text-sm sm:text-base"
@@ -109,7 +134,8 @@ export function ContactSection() {
                   <div className="space-y-1.5 sm:space-y-2">
                     <Label htmlFor="name" className="text-sm">お名前 <span className="text-destructive">*</span></Label>
                     <Input 
-                      id="name" 
+                      id="name"
+                      name="name"
                       placeholder="例：山田 太郎" 
                       required 
                       className="bg-background text-sm sm:text-base"
@@ -121,7 +147,8 @@ export function ContactSection() {
                   <div className="space-y-1.5 sm:space-y-2">
                     <Label htmlFor="email" className="text-sm">メールアドレス <span className="text-destructive">*</span></Label>
                     <Input 
-                      id="email" 
+                      id="email"
+                      name="email"
                       type="email" 
                       placeholder="example@mail.com" 
                       required 
@@ -131,7 +158,8 @@ export function ContactSection() {
                   <div className="space-y-1.5 sm:space-y-2">
                     <Label htmlFor="phone" className="text-sm">電話番号</Label>
                     <Input 
-                      id="phone" 
+                      id="phone"
+                      name="phone"
                       type="tel" 
                       placeholder="03-XXXX-XXXX" 
                       className="bg-background text-sm sm:text-base"
@@ -142,7 +170,8 @@ export function ContactSection() {
                 <div className="space-y-1.5 sm:space-y-2">
                   <Label htmlFor="inquiry-type" className="text-sm">お問い合わせ種別 <span className="text-destructive">*</span></Label>
                   <select 
-                    id="inquiry-type" 
+                    id="inquiry-type"
+                    name="inquiry-type"
                     required
                     className="w-full h-9 sm:h-10 px-3 rounded-md border border-input bg-background text-sm sm:text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   >
@@ -157,12 +186,17 @@ export function ContactSection() {
                 <div className="space-y-1.5 sm:space-y-2">
                   <Label htmlFor="message" className="text-sm">お問い合わせ内容</Label>
                   <Textarea 
-                    id="message" 
+                    id="message"
+                    name="message"
                     placeholder="ご質問やご要望をご記入ください"
                     rows={4}
                     className="bg-background resize-none text-sm sm:text-base"
                   />
                 </div>
+                
+                {error && (
+                  <p className="text-sm text-destructive text-center">{error}</p>
+                )}
                 
                 <Button 
                   type="submit" 

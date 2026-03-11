@@ -27,18 +27,45 @@ export default function DownloadPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [agreePrivacy, setAgreePrivacy] = useState(false)
   const [agreeNewsletter, setAgreeNewsletter] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!agreePrivacy) {
       alert("プライバシーポリシーに同意してください。")
       return
     }
     setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setError(null)
+    
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      companyType: formData.get("company-type"),
+      companyName: formData.get("company-name"),
+      lastName: formData.get("last-name"),
+      firstName: formData.get("first-name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      agreeNewsletter,
+    }
+    
+    try {
+      const response = await fetch("/api/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      
+      if (!response.ok) {
+        throw new Error("送信に失敗しました")
+      }
+      
+      setIsSubmitted(true)
+    } catch {
+      setError("送信に失敗しました。もう一度お試しください。")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -136,6 +163,7 @@ export default function DownloadPage() {
                         </Label>
                         <select
                           id="company-type"
+                          name="company-type"
                           required
                           className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         >
@@ -154,6 +182,7 @@ export default function DownloadPage() {
                         </Label>
                         <Input
                           id="company-name"
+                          name="company-name"
                           placeholder="株式会社グレッジ"
                           required
                           className="bg-background text-sm"
@@ -168,6 +197,7 @@ export default function DownloadPage() {
                           </Label>
                           <Input
                             id="last-name"
+                            name="last-name"
                             placeholder="山田"
                             required
                             className="bg-background text-sm"
@@ -179,6 +209,7 @@ export default function DownloadPage() {
                           </Label>
                           <Input
                             id="first-name"
+                            name="first-name"
                             placeholder="花子"
                             required
                             className="bg-background text-sm"
@@ -193,6 +224,7 @@ export default function DownloadPage() {
                         </Label>
                         <Input
                           id="email"
+                          name="email"
                           type="email"
                           placeholder="info@example.com"
                           required
@@ -207,12 +239,17 @@ export default function DownloadPage() {
                         </Label>
                         <Input
                           id="phone"
+                          name="phone"
                           type="tel"
                           placeholder="0123456789"
                           className="bg-background text-sm"
                         />
                         <p className="text-xs text-muted-foreground">ハイフン(-)無しで入力</p>
                       </div>
+                      
+                      {error && (
+                        <p className="text-sm text-destructive text-center">{error}</p>
+                      )}
 
                       {/* Checkboxes */}
                       <div className="space-y-3">
