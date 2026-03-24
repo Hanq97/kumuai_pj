@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 
-// Email configuration
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "監理ワン <onboarding@resend.dev>"
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "delivered@resend.dev"
+// Email configuration - お名前.com SMTP
+const SMTP_HOST = process.env.SMTP_HOST || "mail18.onamae.ne.jp"
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || "465")
+const SMTP_USER = process.env.SMTP_USER // info@kanri-one.jp
+const SMTP_PASS = process.env.SMTP_PASS
+const FROM_EMAIL = process.env.FROM_EMAIL || "info@kanri-one.jp"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "info@kanri-one.jp"
 
 export async function POST(request: Request) {
   try {
@@ -25,24 +29,33 @@ export async function POST(request: Request) {
       other: "その他のご相談",
     }
 
-    // Check if Resend API key is configured
-    if (!process.env.RESEND_API_KEY) {
-      console.log("[v0] RESEND_API_KEY not configured, skipping email send")
+    // Check if SMTP is configured
+    if (!SMTP_USER || !SMTP_PASS) {
+      console.log("[v0] SMTP not configured, skipping email send")
       console.log("[v0] Contact form data:", { organization, name, email, inquiryType, message })
       return NextResponse.json({ 
         success: true, 
-        message: "お問い合わせを受け付けました（メール送信はスキップされました）" 
+        message: "お問い合わせを受け付けました" 
       })
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY)
+    // Create transporter with お名前.com SMTP settings
+    const transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: SMTP_PORT,
+      secure: SMTP_PORT === 465, // true for 465, false for other ports
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS,
+      },
+    })
 
     // Send notification email to admin
     try {
-      await resend.emails.send({
-        from: FROM_EMAIL,
+      await transporter.sendMail({
+        from: `監理ワン <${FROM_EMAIL}>`,
         replyTo: email,
-        to: [ADMIN_EMAIL],
+        to: ADMIN_EMAIL,
         subject: `【監理ワン】新しいお問い合わせ`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -62,11 +75,14 @@ export async function POST(request: Request) {
       console.error("[v0] Failed to send admin email:", adminEmailError)
     }
 
+    // Add delay to avoid rate limiting
+    await new Promise(resolve => setTimeout(resolve, 1000))
+
     // Send confirmation email to user
     try {
-      await resend.emails.send({
-        from: FROM_EMAIL,
-        to: [email],
+      await transporter.sendMail({
+        from: `監理ワン <${FROM_EMAIL}>`,
+        to: email,
         subject: "【監理ワン】お問い合わせありがとうございます",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
@@ -82,7 +98,7 @@ export async function POST(request: Request) {
             <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
             <p style="color: #666; font-size: 12px;">
               監理ワン<br />
-              Email: support@kanri-one.jp
+              Email: info@kanri-one.jp
             </p>
           </div>
         `,
