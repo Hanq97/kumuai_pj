@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
 
-// SMTP configuration for Mailtrap or any SMTP provider
-const SMTP_HOST = process.env.SMTP_HOST || "sandbox.smtp.mailtrap.io"
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || "587")
-const SMTP_USER = process.env.SMTP_USER
+// Email configuration - お名前.com SMTP
+const SMTP_HOST = process.env.SMTP_HOST || "mail18.onamae.ne.jp"
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || "465")
+const SMTP_USER = process.env.SMTP_USER // support@kanri-one.jp
 const SMTP_PASS = process.env.SMTP_PASS
-const FROM_EMAIL = process.env.SMTP_FROM_EMAIL || "noreply@kanri-one.jp"
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@kanri-one.jp"
+const FROM_EMAIL = process.env.FROM_EMAIL || "support@kanri-one.jp"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "support@kanri-one.jp"
 
 export async function POST(request: Request) {
   try {
@@ -35,31 +35,30 @@ export async function POST(request: Request) {
     if (!SMTP_USER || !SMTP_PASS) {
       console.log("[v0] SMTP not configured, skipping email send")
       console.log("[v0] Download form data:", { companyName, fullName, email, companyType })
-      // Return success even without email - don't block the user
-      return NextResponse.json({ 
-        success: true, 
-        message: "資料請求を受け付けました（メール送信はスキップされました）" 
+      return NextResponse.json({
+        success: true,
+        message: "資料請求を受け付けました"
       })
     }
 
-    // Create transporter
+    // Create transporter with お名前.com SMTP settings
     const transporter = nodemailer.createTransport({
       host: SMTP_HOST,
       port: SMTP_PORT,
-      secure: SMTP_PORT === 465,
+      secure: SMTP_PORT === 465, // true for 465, false for other ports
       auth: {
         user: SMTP_USER,
         pass: SMTP_PASS,
       },
     })
 
-    // Send notification email to admin (from user's email)
+    // Send notification email to admin
     try {
       await transporter.sendMail({
-        from: `${fullName} <${email}>`,
+        from: `監理ワン <${FROM_EMAIL}>`,
         replyTo: email,
         to: ADMIN_EMAIL,
-        subject: `【監理ワン】新しい資料ダウンロード - ${companyName}`,
+        subject: `【監理ワン】新しい資料ダウンロード`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #0f3a5d;">新しい資料ダウンロードリクエスト</h2>
@@ -78,29 +77,36 @@ export async function POST(request: Request) {
       console.error("[v0] Failed to send admin email:", adminEmailError)
     }
 
-    // Add delay to avoid Mailtrap rate limit (2 seconds for safety)
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    // Add delay to avoid rate limiting
+    await new Promise(resolve => setTimeout(resolve, 1000))
 
     // Send document email to user
     try {
       await transporter.sendMail({
-        from: FROM_EMAIL,
+        from: `監理ワン <${FROM_EMAIL}>`,
         to: email,
-        subject: "【監理ワン】資料をお届けいたします",
+        subject: "【監理ワン】資料請求を受け付けました",
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #0f3a5d;">資料ダウンロードのご案内</h2>
+            <h2 style="color: #0f3a5d;">資料請求ありがとうございます</h2>
             <p>${fullName} 様</p>
-            <p>この度は監理ワンの資料をご請求いただき、誠にありがとうございます。</p>
-            <p>以下のリンクより資料をダウンロードいただけます。</p>
-            <div style="text-align: center; margin: 24px 0;">
-              <a href="https://kanri-one.jp/documents/kanri-one-guide.pdf" 
-                 style="display: inline-block; background: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
-                資料をダウンロード
-              </a>
-            </div>
-            <p>ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+
+            <p>
+              この度は監理ワンの資料をご請求いただき、誠にありがとうございます。<br/>
+              現在、担当者が内容を確認しております。
+            </p>
+
+            <p>
+              資料につきましては、確認後あらためてメールにてお送りいたしますので、<br/>
+              恐れ入りますが、しばらくお待ちください。
+            </p>
+
+            <p>
+              ご不明な点がございましたら、お気軽にお問い合わせください。
+            </p>
+
             <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+
             <p style="color: #666; font-size: 12px;">
               監理ワン<br />
               Email: support@kanri-one.jp
@@ -112,7 +118,6 @@ export async function POST(request: Request) {
       console.error("[v0] Failed to send user email:", userEmailError)
     }
 
-    // Always return success - form submission is complete even if some emails fail
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("[v0] Email sending error:", error)

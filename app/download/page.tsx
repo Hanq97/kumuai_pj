@@ -20,7 +20,7 @@ const documentContents = [
 const targetUsers = [
   "監理ワンでできるようになることを知りたい",
   "技能実習・特定技能の管理システムを探している",
-  "外国人労働者の在留期限・企業データ管理が煩雑",
+  "外国人労働者の在留期限と企業データ管理が煩雑",
 ]
 
 export default function DownloadPage() {
