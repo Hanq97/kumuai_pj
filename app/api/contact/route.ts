@@ -4,10 +4,10 @@ import nodemailer from "nodemailer"
 // Email configuration - お名前.com SMTP
 const SMTP_HOST = process.env.SMTP_HOST || "mail18.onamae.ne.jp"
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || "465")
-const SMTP_USER = process.env.SMTP_USER // info@kanri-one.jp
+const SMTP_USER = process.env.SMTP_USER // support@kanri-one.jp
 const SMTP_PASS = process.env.SMTP_PASS
-const FROM_EMAIL = process.env.FROM_EMAIL || "info@kanri-one.jp"
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "info@kanri-one.jp"
+const FROM_EMAIL = process.env.FROM_EMAIL || "support@kanri-one.jp"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "support@kanri-one.jp"
 
 export async function POST(request: Request) {
   try {
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
             <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
             <p style="color: #666; font-size: 12px;">
               監理ワン<br />
-              Email: info@kanri-one.jp
+              Email: support@kanri-one.jp
             </p>
           </div>
         `,
