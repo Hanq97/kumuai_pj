@@ -20,7 +20,7 @@ interface ChatButton {
   action: string
 }
 
-type ConversationState = 
+type ConversationState =
   | "initial"
   | "law_worry"
   | "excel_limit"
@@ -175,7 +175,7 @@ export function Chatbot() {
   const addBotMessage = async (responseKey: string) => {
     setIsTyping(true)
     await new Promise(resolve => setTimeout(resolve, 800))
-    
+
     const response = responses[responseKey]
     if (response) {
       const botMessage: Message = {
@@ -247,7 +247,7 @@ export function Chatbot() {
     if (awaitingInput) {
       const isValidEmail = awaitingInput === "email" && userInput.includes("@")
       const isValidPhone = awaitingInput === "phone" && /[\d\-+]+/.test(userInput)
-      
+
       if (isValidEmail || isValidPhone) {
         setAwaitingInput(null)
         await addBotMessage("completed")
@@ -257,8 +257,8 @@ export function Chatbot() {
         await new Promise(resolve => setTimeout(resolve, 500))
         const errorMessage: Message = {
           id: Date.now(),
-          text: awaitingInput === "email" 
-            ? "正しいメールアドレスを入力してください。" 
+          text: awaitingInput === "email"
+            ? "正しいメールアドレスを入力してください。"
             : "正しい電話番号を入力してください。",
           isBot: true,
           timestamp: new Date()
@@ -285,14 +285,14 @@ export function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg hover:bg-accent/90 transition-all duration-300 flex items-center justify-center ${isOpen ? "scale-0" : "scale-100"}`}
+        className={`hidden fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-accent text-accent-foreground shadow-lg hover:bg-accent/90 transition-all duration-300 flex items-center justify-center ${isOpen ? "scale-0" : "scale-100"}`}
         aria-label="チャットを開く"
       >
         <MessageCircle className="h-6 w-6" />
       </button>
 
       {/* Chat Window */}
-      <div 
+      <div
         className={`fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] bg-card rounded-xl shadow-2xl border border-border transition-all duration-300 ${isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"}`}
       >
         {/* Header */}
@@ -306,7 +306,7 @@ export function Chatbot() {
               <p className="text-xs text-primary-foreground/70">24時間対応</p>
             </div>
           </div>
-          <button 
+          <button
             onClick={() => setIsOpen(false)}
             className="p-1 hover:bg-primary-foreground/20 rounded-full transition-colors"
             aria-label="チャットを閉じる"
@@ -327,12 +327,11 @@ export function Chatbot() {
                     <User className="h-4 w-4 text-accent" />
                   )}
                 </div>
-                <div 
-                  className={`max-w-[80%] px-4 py-3 rounded-xl text-sm leading-relaxed ${
-                    message.isBot 
-                      ? "bg-secondary text-foreground rounded-tl-none" 
-                      : "bg-accent text-accent-foreground rounded-tr-none"
-                  }`}
+                <div
+                  className={`max-w-[80%] px-4 py-3 rounded-xl text-sm leading-relaxed ${message.isBot
+                    ? "bg-secondary text-foreground rounded-tl-none"
+                    : "bg-accent text-accent-foreground rounded-tr-none"
+                    }`}
                 >
                   {message.text.split("\n").map((line, i) => (
                     <span key={i}>
@@ -342,7 +341,7 @@ export function Chatbot() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Buttons */}
               {message.isBot && message.buttons && message.id === messages[messages.length - 1]?.id && !isTyping && (
                 <div className="mt-3 ml-11 flex flex-col gap-2">
@@ -359,7 +358,7 @@ export function Chatbot() {
               )}
             </div>
           ))}
-          
+
           {isTyping && (
             <div className="flex gap-3">
               <div className="w-8 h-8 rounded-full bg-primary/10 flex-shrink-0 flex items-center justify-center">
@@ -374,7 +373,7 @@ export function Chatbot() {
               </div>
             </div>
           )}
-          
+
           <div ref={messagesEndRef} />
         </div>
 
@@ -388,7 +387,7 @@ export function Chatbot() {
               placeholder={awaitingInput === "email" ? "example@email.com" : awaitingInput === "phone" ? "090-XXXX-XXXX" : "メッセージを入力..."}
               className="flex-1 bg-background"
             />
-            <Button 
+            <Button
               onClick={handleSendMessage}
               disabled={!inputValue.trim() || isTyping}
               className="bg-accent hover:bg-accent/90 text-accent-foreground"
