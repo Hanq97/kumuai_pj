@@ -1,25 +1,25 @@
-import { AlertTriangle, FileWarning, Clock, MessageSquareMore } from "lucide-react"
+import { FileWarning, Users, Shield, HeartHandshake } from "lucide-react"
 
 const painPoints = [
   {
-    icon: AlertTriangle,
-    title: "「また法改正？」",
-    description: "変わるたびに書類のフォーマットを修正し、ミスに怯える日々。"
-  },
-  {
     icon: FileWarning,
-    title: "「Excelが重い」",
-    description: "データが増えるたびに壊れるファイル、誰が最新か分からないストレス。"
+    title: "法改正と書類の迷宮",
+    description: "制度が変わるたびに複雑な書類フォーマットを修正し、法的な整合性の確認だけで一日が終わる。わずかな記載ミスが命取りになるプレッシャー。"
   },
   {
-    icon: Clock,
-    title: "「期限が怖い」",
-    description: "在留期限、定期報告。もし忘れたら「行政処分」というプレッシャー。"
+    icon: Users,
+    title: "属人化というブラックボックス",
+    description: "「あの案件、入管の受付状況はどうなった？」が担当者にしか分からない。進捗が個人の頭の中にしかなく、組織としての対応力が機能していない。"
   },
   {
-    icon: MessageSquareMore,
-    title: "「問い合わせの山」",
-    description: "企業やスタッフからの「あの書類どこ？」に一日中追い回される。"
+    icon: Shield,
+    title: "行政処分という隣り合わせの恐怖",
+    description: "在留期限、定期面談、四半期報告。これらを「目視と付箋」で管理する危うさ。一箇所の失念が即、法令違反となり、組織の信頼を根底から揺るがす。"
+  },
+  {
+    icon: HeartHandshake,
+    title: "事務作業に殺される支援の質",
+    description: "夜間に及ぶ面談調整、終わりのない集計作業。本来大切にすべき「本人への生活支援」や「企業へのコンサル」の時間が、アナログな運用のせいで奪われ続けている。"
   }
 ]
 
