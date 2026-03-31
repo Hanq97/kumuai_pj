@@ -124,7 +124,7 @@ export default function PrivacyPolicyPage() {
                 <div className="mt-4 p-4 bg-secondary/50 rounded-lg">
                   <p className="text-foreground font-medium">株式会社監理ワン</p>
                   <p className="text-muted-foreground text-sm mt-2">
-                    メールアドレス：info@kanri-one.jp
+                    メールアドレス：support@kanri-one.jp
                   </p>
                 </div>
               </section>
