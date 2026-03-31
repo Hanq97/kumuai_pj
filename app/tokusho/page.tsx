@@ -76,7 +76,7 @@ export default function TokushoPage() {
                         メールアドレス
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        info@kanri-one.jp
+                        support@kanri-one.jp
                       </td>
                     </tr>
                     <tr>
