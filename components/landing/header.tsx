@@ -37,7 +37,7 @@ export function Header() {
           {/* Logo */}
           <a href="#" className="flex items-center">
             <Image
-              src="/images/logo_dark.png"
+              src="/images/logo.png"
               alt="監理ワン"
               width={140}
               height={36}
