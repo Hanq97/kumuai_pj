@@ -16,21 +16,8 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   keywords: ['監理団体', '登録支援機関', '技能実習', '特定技能', '育成就労', '業務効率化', '書類作成'],
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/icon.svg',
+    apple: '/icon.svg',
   },
 }
 
