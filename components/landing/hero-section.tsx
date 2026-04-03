@@ -70,40 +70,31 @@ export function HeroSection() {
           </div>
           
           {/* Image - Right Side */}
-          <div className="relative lg:pl-8">
-            {/* Floating badge - Top Right */}
-            <div className="absolute -top-2 right-0 lg:right-4 z-20 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
-              <p className="text-sm font-medium">導入実績 100社+</p>
-            </div>
-            
-            {/* Dashboard Image with perspective tilt */}
-            <div 
-              className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-border bg-card"
-              style={{
-                transform: 'perspective(1000px) rotateY(-5deg) rotateX(2deg)',
-                transformOrigin: 'center center',
-              }}
-            >
+          <div className="relative">
+            <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
               <Image
                 src="/images/dashboard-hero.png"
                 alt="監理ワン管理画面のイメージ"
                 fill
-                className="object-cover object-left-top"
+                className="object-cover"
                 priority
               />
             </div>
-            
-            {/* Floating badge - Bottom Left */}
-            <div className="absolute -bottom-4 left-0 lg:-left-4 z-20 bg-card px-4 py-3 rounded-lg shadow-lg border border-border">
+            {/* Floating badge */}
+            <div className="absolute -bottom-4 -left-4 lg:-left-8 bg-card px-4 py-3 rounded-lg shadow-lg border border-border">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 235, 181, 0.1)' }}>
-                  <span style={{ color: '#00EBB5' }} className="font-bold">30</span>
+                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                  <span className="text-accent font-bold">30</span>
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">無料お試し</p>
                   <p className="font-semibold text-foreground">30日間</p>
                 </div>
               </div>
+            </div>
+            {/* Another floating element */}
+            <div className="absolute -top-4 -right-4 lg:-right-8 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
+              <p className="text-sm font-medium">導入実績 100社+</p>
             </div>
           </div>
         </div>
