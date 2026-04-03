@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export function Footer() {
   return (
     <footer className="py-8 sm:py-12 bg-foreground text-background">
@@ -5,14 +7,14 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-2">
-            <div className="flex items-center gap-2 sm:gap-2.5 mb-3 sm:mb-4">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-gradient-to-br from-background to-background/80 flex items-center justify-center shadow-sm">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[22px] sm:h-[22px]">
-                  <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="2.5" fill="none" className="text-foreground" />
-                  <path d="M12 4V12L17 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-foreground" />
-                </svg>
-              </div>
-              <span className="font-bold text-background text-base sm:text-lg leading-tight">監理ワン</span>
+            <div className="flex items-center mb-3 sm:mb-4">
+              <Image
+                src="/images/logo_dark.png"
+                alt="監理ワン"
+                width={140}
+                height={36}
+                className="h-8 sm:h-9 w-auto"
+              />
             </div>
             <p className="text-background/70 text-xs sm:text-sm leading-relaxed max-w-sm">
               監理団体・登録支援機関の業務を徹底的に効率化。

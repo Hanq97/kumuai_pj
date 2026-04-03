@@ -71,14 +71,16 @@ export function HeroSection() {
           
           {/* Image - Right Side */}
           <div className="relative">
-            <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-2xl border border-border bg-card">
-              <Image
-                src="/images/hero-dashboard.jpg"
-                alt="監理ワン管理画面のイメージ"
-                fill
-                className="object-cover"
-                priority
-              />
+            <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-border/50 bg-muted/30 p-2 sm:p-3">
+              <div className="relative aspect-[16/11] w-full rounded-xl overflow-hidden bg-white">
+                <Image
+                  src="/images/dashboard-hero.png"
+                  alt="監理ワン管理画面のイメージ"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </div>
             {/* Floating badge */}
             <div className="absolute -bottom-4 -left-4 lg:-left-8 bg-card px-4 py-3 rounded-lg shadow-lg border border-border">
