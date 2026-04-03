@@ -1,62 +1,61 @@
 import Image from "next/image"
-import { CalendarClock, Users, FileCheck, ClipboardCheck, Building2, Receipt, Languages, RefreshCw } from "lucide-react"
 
 const features = [
   {
-    icon: CalendarClock,
+    iconImage: "/images/kinou_icon1.png",
     title: "タスク・期限管理の自動化",
     subtitle: "【解決】「期限管理」のプレッシャーをシステムが肩代わり",
     description: "在留期限や四半期報告、定期面談の予定を自動算出。期限が近づくと「マルチアラート」で担当者と管理者に通知が届くため、膨大な対象者の管理も漏れなく確実に行えます。",
-    image: "/images/feature-document.jpg"
+    image: "/images/feature-1.png"
   },
   {
-    icon: Users,
+    iconImage: "/images/kinou_icon2.png",
     title: "人材情報の一元管理",
     subtitle: "【解決】「必要な情報」にいつでも、どこからでもアクセス",
     description: "基本プロフィール、在留資格、パスポート情報に加え、ベトナム人特有の「推薦状」の進捗まで一画面に集約。バラバラだった情報を統合し、チーム全員で最新状況を共有できます。",
-    image: "/images/feature-legal.jpg"
+    image: "/images/feature-2.png"
   },
   {
-    icon: FileCheck,
+    iconImage: "/images/kinou_icon3.png",
     title: "高度な書類自動生成",
     subtitle: "【解決】「複雑な入管書類」作成の工数を劇的に削減",
     description: "蓄積されたデータから、特定技能の賃金比較や支援実施報告書をワンクリックで生成。弁護士監修のロジックに基づいた正確なフォーマットにより、書類作成の心理的負担を軽くします。",
-    image: "/images/feature-dashboard.jpg"
+    image: "/images/feature-3.png"
   },
   {
-    icon: ClipboardCheck,
+    iconImage: "/images/kinou_icon4.png",
     title: "支援義務のトラッキング",
     subtitle: "【解決】「夜間・休日の対応」も漏らさず実績として蓄積",
     description: "面談記録や緊急の病院同行など、実施した支援をその場でスマホから記録。いつ・誰が・どのような支援を行ったかの履歴を完全に保持し、実地検査時にも迅速にエビデンスを提示できます。",
-    image: "/images/feature-multilingual.jpg"
+    image: "/images/feature-4.png"
   },
   {
-    icon: Building2,
+    iconImage: "/images/kinou_icon5.png",
     title: "複数組織・拠点の横断管理",
     subtitle: "【解決】「組織全体の稼働状況」をリアルタイムに把握",
     description: "複数の監理団体や登録支援機関、各拠点を一つの画面で切り替え管理。本部管理者が各拠点の進捗やコンプライアンス遵守状況を俯瞰でき、組織全体のガバナンスを強化します。",
-    image: "/images/feature-billing.jpg"
+    image: "/images/feature-5.png"
   },
   {
-    icon: Receipt,
+    iconImage: "/images/kinou_icon6.png",
     title: "請求・支援委託費の自動集計",
     subtitle: "【解決】「毎月の経理作業」の複雑な計算をシンプルに",
     description: "管理人数やオプション支援に基づき、請求金額を自動で算出。請求書発行まで一気通貫で行えるため、営業担当と経理担当の確認作業を大幅に効率化します。",
-    image: "/images/feature-multiorg.jpg"
+    image: "/images/feature-6.png"
   },
   {
-    icon: Languages,
+    iconImage: "/images/kinou_icon7.png",
     title: "多言語切り替え機能",
     subtitle: "【解決】「外国人スタッフ」との情報共有をスムーズに",
     description: "日本語、ベトナム語、英語などの主要言語に対応。外国人支援スタッフも母国語で正確に情報を入力・確認できるため、現場での入力ミスやコミュニケーションの齟齬を防ぎます。",
-    image: "/images/feature-document.jpg"
+    image: "/images/feature-7.png"
   },
   {
-    icon: RefreshCw,
+    iconImage: "/images/kinou_icon8.png",
     title: "法制度アップデートへの自動追従",
     subtitle: "【解決】「法改正」への対応コストと不安を最小限に",
     description: "2027年施行の「育成就労制度」など、法律や書式の変更に合わせてシステムを自動更新。ユーザー側で特別な作業をすることなく、常に最新の法規制に準拠した運用を継続できます。",
-    image: "/images/feature-legal.jpg"
+    image: "/images/feature-8.png"
   }
 ]
 
@@ -104,8 +103,14 @@ export function FeaturesSection() {
                 <div className="w-full lg:w-1/2">
                   <div className={`${isEven ? 'lg:pl-4' : 'lg:pr-4'}`}>
                     <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <feature.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center shrink-0">
+                        <Image
+                          src={feature.iconImage}
+                          alt={feature.title}
+                          width={48}
+                          height={48}
+                          className="w-10 h-10 sm:w-12 sm:h-12"
+                        />
                       </div>
                       <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-primary">
                         {feature.title}

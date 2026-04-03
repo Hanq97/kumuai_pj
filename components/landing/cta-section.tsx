@@ -27,7 +27,8 @@ export function CTASection() {
           
           <Button 
             size="lg" 
-            className="text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-6 bg-accent hover:bg-accent/90 text-accent-foreground"
+            className="text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-6 text-white hover:opacity-90"
+            style={{ backgroundColor: '#00EBB5' }}
             onClick={scrollToContact}
           >
             <Calendar className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />

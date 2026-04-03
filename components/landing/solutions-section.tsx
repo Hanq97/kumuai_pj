@@ -27,7 +27,7 @@ export function SolutionsSection() {
       <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-2 sm:mb-3 text-balance">
-            監理ワンが提供する<span className="text-accent">「3つの解放」</span>
+            監理ワンが提供する<span style={{ color: '#00EBB5' }}>「3つの解放」</span>
           </h2>
         </div>
         
@@ -41,7 +41,7 @@ export function SolutionsSection() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/20 flex items-center justify-center">
                   <solution.icon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 </div>
-                <span className="text-3xl sm:text-4xl font-bold text-primary-foreground/20">{solution.number}</span>
+                <span className="text-3xl sm:text-4xl font-bold text-white">{solution.number}</span>
               </div>
               <h3 className="text-base sm:text-lg font-bold text-primary-foreground mb-2 sm:mb-3">
                 {solution.title}

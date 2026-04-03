@@ -29,7 +29,7 @@ export function PainPointsSection() {
       <div className="container mx-auto px-5 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-6 sm:mb-8">
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground mb-2 sm:mb-3 text-balance">
-            まだ、こんな<span className="text-accent">「時代遅れ」</span>な運用で
+            まだ、こんな<span style={{ color: '#00EBB5' }}>「時代遅れ」</span>な運用で
             <br className="hidden sm:block" />
             疲弊していませんか？
           </h2>
