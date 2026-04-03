@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
@@ -20,14 +21,15 @@ export function BlogHeader() {
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-sm">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="sm:w-[22px] sm:h-[22px]">
-                <circle cx="12" cy="12" r="8" stroke="white" strokeWidth="2.5" fill="none" />
-                <path d="M12 4V12L17 17" stroke="white" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-            </div>
-            <span className="font-bold text-foreground text-base sm:text-lg leading-tight">監理ワン</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo.png"
+              alt="監理ワン"
+              width={140}
+              height={36}
+              className="h-8 sm:h-9 w-auto"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
