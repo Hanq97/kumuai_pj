@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   keywords: ['監理団体', '登録支援機関', '技能実習', '特定技能', '育成就労', '業務効率化', '書類作成'],
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/favicon.png',
+    apple: '/favicon.png',
   },
 }
 
