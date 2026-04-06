@@ -39,18 +39,18 @@ export default function TokushoPage() {
                   <tbody className="divide-y divide-border">
                     <tr className="border-t border-border">
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 w-1/3 align-top">
-                        販売事業者
+                        販売事業者名
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        株式会社監理ワン
+                        株式会社DEHA SOLUTIONS
                       </td>
                     </tr>
                     <tr>
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
-                        代表者
+                        運営責任者
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        代表取締役　山田 太郎
+                        ファム・ミン・フン
                       </td>
                     </tr>
                     <tr>
@@ -58,8 +58,8 @@ export default function TokushoPage() {
                         所在地
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        〒100-0001<br />
-                        東京都千代田区千代田1-1-1
+                        〒104-0033<br />
+                        東京都中央区新川一丁目27番8号　新川大原ビル2階
                       </td>
                     </tr>
                     <tr>
@@ -67,8 +67,8 @@ export default function TokushoPage() {
                         電話番号
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        03-XXXX-XXXX<br />
-                        <span className="text-sm">（受付時間：平日10:00〜17:00）</span>
+                        (+81) 3-6260-6226<br />
+                        <span className="text-sm">※受付時間：平日 10:00〜19:00</span>
                       </td>
                     </tr>
                     <tr>
@@ -81,45 +81,35 @@ export default function TokushoPage() {
                     </tr>
                     <tr>
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
-                        サービスURL
-                      </th>
-                      <td className="py-4 px-4 text-muted-foreground">
-                        https://kanri-one.jp
-                      </td>
-                    </tr>
-                    <tr>
-                      <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
                         販売価格
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        各サービスページに記載の料金<br />
-                        <span className="text-sm">（税込価格で表示しております）</span>
+                        各サービスページに記載の通り
                       </td>
                     </tr>
                     <tr>
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
-                        販売価格以外の必要料金
+                        商品代金以外の必要料金
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        インターネット接続に必要な通信料、その他本サービスの利用に必要な機器等の購入費用はお客様のご負担となります。
+                        ・消費税<br />
+                        ・インターネット接続にかかる通信料等はお客様のご負担となります
                       </td>
                     </tr>
                     <tr>
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
-                        お支払い方法
+                        支払方法
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        クレジットカード決済<br />
-                        銀行振込
+                        ・銀行振込（請求書払い）
                       </td>
                     </tr>
                     <tr>
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
-                        お支払い時期
+                        支払時期
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        <strong>クレジットカード決済：</strong>各カード会社の規約に基づくお支払い<br />
-                        <strong>銀行振込：</strong>請求書発行後14日以内
+                        ・銀行振込：請求書発行後、指定期日までにお支払い
                       </td>
                     </tr>
                     <tr>
@@ -127,8 +117,7 @@ export default function TokushoPage() {
                         サービス提供時期
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        お申込み手続き完了後、即時ご利用いただけます。<br />
-                        <span className="text-sm">（別途ご案内する場合を除く）</span>
+                        お申し込み手続き完了後、即日または当社が定める開始日よりご利用可能
                       </td>
                     </tr>
                     <tr>
@@ -136,18 +125,18 @@ export default function TokushoPage() {
                         返品・キャンセルについて
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        サービスの性質上、お申込み後の返品・キャンセルはお受けしておりません。<br />
-                        ただし、無料トライアル期間中のキャンセルは可能です。
+                        サービスの性質上、契約成立後の返品・返金は原則としてお受けしておりません。<br />
+                        ただし、当社の責任による重大な不具合がある場合はこの限りではありません。
                       </td>
                     </tr>
                     <tr>
                       <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
-                        契約期間
+                        解約について
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        月額プラン：1ヶ月ごとの自動更新<br />
-                        年額プラン：1年ごとの自動更新<br />
-                        <span className="text-sm">※解約をご希望の場合は、更新日の前月末日までにお手続きください。</span>
+                        お客様は所定の手続きにより、いつでも解約することができます。<br />
+                        解約日は当社が定める規約に基づき適用されます。<br />
+                        なお、日割りでの返金は行っておりません。
                       </td>
                     </tr>
                     <tr>
@@ -155,22 +144,21 @@ export default function TokushoPage() {
                         動作環境
                       </th>
                       <td className="py-4 px-4 text-muted-foreground">
-                        <ul className="list-disc list-inside space-y-1 text-sm">
-                          <li>インターネット環境（10Mbps以上推奨）</li>
-                          <li>Microsoft Office 2019以降</li>
-                          <li>PCメモリ8GB以上</li>
-                          <li>Windows 10以上（64bit）</li>
-                          <li>Google Chrome（最新版）</li>
-                        </ul>
+                        本サービスは以下の環境での利用を推奨しております。<br />
+                        ・最新バージョンのGoogle Chrome / Safari / Edge
+                      </td>
+                    </tr>
+                    <tr>
+                      <th className="py-4 px-4 text-left font-medium text-foreground bg-secondary/30 align-top">
+                        特別条件
+                      </th>
+                      <td className="py-4 px-4 text-muted-foreground">
+                        本サービスは法人向けサービスです。
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-
-              <p className="text-muted-foreground text-sm mt-8">
-                最終更新日：2026年1月1日
-              </p>
             </div>
           </div>
         </div>
