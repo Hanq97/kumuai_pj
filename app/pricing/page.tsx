@@ -104,15 +104,17 @@ export default function PricingPage() {
       <main className="flex-1 pt-16">
         {/* Hero Section */}
         <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary/30 to-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-              料金プラン
-            </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-              シンプルで分かりやすい料金体系
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="inline-block mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent/10 rounded-full">
+              <span className="text-accent text-xs sm:text-sm font-medium">
+                料金プラン
+              </span>
+            </div>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 text-balance leading-tight">
+              シンプルで分かりやすい<br className="sm:hidden" />料金体系
             </h1>
-            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto mb-6">
-              監理団体・登録支援機関の規模に合わせて最適なプランをお選びいただけます。<br />
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto mb-6 leading-relaxed">
+              監理団体・登録支援機関の規模に合わせて最適なプランをお選びいただけます。<br className="hidden md:block" />
               全プラン30日間の無料トライアル付き。
             </p>
           </div>
@@ -120,7 +122,7 @@ export default function PricingPage() {
 
         {/* Pricing Cards */}
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {plans.map((plan, index) => (
                 <div
@@ -187,12 +189,12 @@ export default function PricingPage() {
 
         {/* Features Section */}
         <section className="py-12 sm:py-16 lg:py-20 bg-secondary/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-            <div className="text-center mb-12">
-              <span className="text-primary font-medium text-lg mb-2 block">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8 sm:mb-12">
+              <span className="text-primary font-medium text-sm sm:text-base mb-2 block">
                 ＼ 圧倒的コストパフォーマンス ／
               </span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
                 これだけの機能が<br className="sm:hidden" />業界トップクラスの低価格で利用できます。
               </h2>
             </div>
@@ -220,7 +222,7 @@ export default function PricingPage() {
 
         {/* Contact CTA */}
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-primary/80 p-8 sm:p-12 lg:p-16">
                 {/* Background decoration */}
@@ -254,7 +256,7 @@ export default function PricingPage() {
 
         {/* Online Demo */}
         <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-background to-secondary/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Left - Content */}
@@ -510,7 +512,7 @@ export default function PricingPage() {
 
         {/* Trust Section */}
         <section className="py-12 sm:py-16 border-t border-border">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                 <div className="text-center p-4 sm:p-6 bg-card rounded-xl border border-border">
