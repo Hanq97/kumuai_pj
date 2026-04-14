@@ -16,7 +16,7 @@ export default function PrivacyPolicyPage() {
       
       {/* Breadcrumb */}
       <div className="pt-20 sm:pt-24 border-b border-border bg-secondary/30">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-3 sm:py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <nav className="flex items-center gap-1 text-xs sm:text-sm text-muted-foreground">
             <Link href="/" className="hover:text-foreground transition-colors">ホーム</Link>
             <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -26,10 +26,10 @@ export default function PrivacyPolicyPage() {
       </div>
 
       {/* Content */}
-      <main className="flex-1 py-10 sm:py-14">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+      <main className="flex-1 py-8 sm:py-10 lg:py-14">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-8 sm:mb-10">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-6 sm:mb-8 lg:mb-10">
               プライバシーポリシー
             </h1>
             

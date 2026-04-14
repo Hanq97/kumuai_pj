@@ -33,8 +33,8 @@ export default function BlogPage() {
       <BlogHeader />
       
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-28 pb-10 sm:pb-14 bg-gradient-to-b from-secondary/50 to-background">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 text-center">
+      <section className="pt-24 sm:pt-28 pb-8 sm:pb-10 lg:pb-14 bg-gradient-to-b from-secondary/50 to-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4 text-balance">
             ブログ・お知らせ
           </h1>
@@ -48,7 +48,7 @@ export default function BlogPage() {
 
       {/* Filter Tabs */}
       <section className="border-b border-border sticky top-16 bg-background/95 backdrop-blur z-30">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-1 sm:gap-2 overflow-x-auto py-3 sm:py-4 scrollbar-hide">
             {categories.map((category) => (
               <button
@@ -68,8 +68,8 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="py-8 sm:py-12">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+      <section className="py-6 sm:py-8 lg:py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {paginatedPosts.map((post) => (
               <article 
