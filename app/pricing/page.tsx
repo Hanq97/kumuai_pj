@@ -103,8 +103,8 @@ export default function PricingPage() {
       
       <main className="flex-1 pt-16">
         {/* Hero Section */}
-        <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-secondary/30 to-background">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12 text-center">
+        <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary/30 to-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
               料金プラン
             </span>
@@ -120,14 +120,14 @@ export default function PricingPage() {
 
         {/* Pricing Cards */}
         <section className="py-12 sm:py-16 lg:py-20">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12">
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {plans.map((plan, index) => (
                 <div
                   key={index}
                   className={`relative rounded-2xl p-6 sm:p-8 ${
                     plan.highlighted
-                      ? "bg-primary text-primary-foreground ring-2 ring-primary shadow-xl scale-105"
+                      ? "bg-primary text-primary-foreground ring-2 ring-primary shadow-xl md:scale-105"
                       : "bg-card border border-border shadow-sm"
                   }`}
                 >
@@ -187,7 +187,7 @@ export default function PricingPage() {
 
         {/* Features Section */}
         <section className="py-12 sm:py-16 lg:py-20 bg-secondary/20">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
             <div className="text-center mb-12">
               <span className="text-primary font-medium text-lg mb-2 block">
                 ＼ 圧倒的コストパフォーマンス ／
@@ -197,11 +197,11 @@ export default function PricingPage() {
               </h2>
             </div>
             <div className="max-w-4xl mx-auto">
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                 {features.map((feature, index) => (
                   <span
                     key={index}
-                    className="px-4 py-2.5 bg-card border border-border rounded-lg text-sm text-foreground hover:border-primary/50 transition-colors"
+                    className="px-3 py-2 sm:px-4 sm:py-2.5 bg-card border border-border rounded-lg text-xs sm:text-sm text-foreground hover:border-primary/50 transition-colors"
                   >
                     {feature}
                   </span>
@@ -220,7 +220,7 @@ export default function PricingPage() {
 
         {/* Contact CTA */}
         <section className="py-12 sm:py-16">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
             <div className="max-w-2xl mx-auto text-center bg-secondary/30 rounded-2xl p-8 sm:p-12">
               <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-4">
                 お気軽にお問い合わせください。
@@ -240,7 +240,7 @@ export default function PricingPage() {
 
         {/* Online Demo */}
         <section className="py-12 sm:py-16 border-t border-border">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12 text-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12 text-center">
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
               監理ワンをオンラインデモ体験
             </h2>
@@ -258,7 +258,7 @@ export default function PricingPage() {
 
         {/* IT補助金 Section */}
         <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-background to-secondary/20">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
             <div className="text-center mb-12">
               <span className="text-primary font-medium text-lg mb-2 block">
                 ＼ 監理ワンはIT導入補助金事業者です ／
@@ -269,15 +269,15 @@ export default function PricingPage() {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto bg-card rounded-2xl p-8 sm:p-12 border border-border shadow-sm mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-2">
+            <div className="max-w-4xl mx-auto bg-card rounded-2xl p-6 sm:p-8 lg:p-12 border border-border shadow-sm mb-8 sm:mb-12">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center mb-2">
                 クラウド利用料を最大2年分補助
               </h2>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground text-center mb-6">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground text-center mb-4 sm:mb-6">
                 総費用の最大1/2・150万円補助
               </h3>
-              <p className="text-center text-muted-foreground mb-8">
-                中小企業・小規模事業者を対象に、<br />
+              <p className="text-center text-muted-foreground text-sm sm:text-base mb-6 sm:mb-8">
+                中小企業・小規模事業者を対象に、<br className="hidden sm:block" />
                 ITツール導入の費用の一部が補助されるIT導入補助金。
               </p>
               <div className="bg-secondary/30 rounded-xl p-6 text-center mb-6">
@@ -293,57 +293,57 @@ export default function PricingPage() {
             </div>
 
             {/* Subsidy Flow Illustration */}
-            <div className="max-w-4xl mx-auto bg-secondary/30 rounded-2xl p-8 sm:p-12 mb-12">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
-                <div className="text-center">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Building2 className="w-12 h-12 sm:w-16 sm:h-16 text-primary" />
+            <div className="max-w-4xl mx-auto bg-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-12 mb-8 sm:mb-12">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8">
+                <div className="text-center flex-shrink-0">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                    <Building2 className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-primary" />
                   </div>
-                  <p className="text-sm text-muted-foreground">経済産業省<br />IT導入補助金事務所</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">経済産業省<br />IT導入補助金事務所</p>
                 </div>
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center py-2 sm:py-0">
                   <div className="text-center mb-2">
-                    <span className="text-2xl sm:text-3xl font-bold text-accent">最大150</span>
-                    <span className="text-lg sm:text-xl font-bold text-foreground">万円の</span>
+                    <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-accent">最大150</span>
+                    <span className="text-base sm:text-lg lg:text-xl font-bold text-foreground">万円の</span>
                     <br />
-                    <span className="text-lg sm:text-xl font-bold text-foreground">費用を補助</span>
+                    <span className="text-base sm:text-lg lg:text-xl font-bold text-foreground">費用を補助</span>
                   </div>
-                  <div className="w-16 sm:w-24 h-2 bg-gradient-to-r from-primary to-accent rounded-full" />
-                  <Zap className="w-8 h-8 text-accent mt-2" />
-                  <p className="text-xs text-muted-foreground mt-2 text-center max-w-[200px]">
+                  <div className="w-12 sm:w-16 lg:w-24 h-1.5 sm:h-2 bg-gradient-to-r from-primary to-accent rounded-full" />
+                  <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-accent mt-2" />
+                  <p className="text-xs text-muted-foreground mt-2 text-center max-w-[180px] sm:max-w-[200px]">
                     業務効率化・売上アップを<br />サポートするITツールを導入する<br />経費の一部を補助
                   </p>
                 </div>
-                <div className="text-center">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-12 h-12 sm:w-16 sm:h-16 text-accent" />
+                <div className="text-center flex-shrink-0">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 bg-accent/10 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                    <Users className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 text-accent" />
                   </div>
-                  <p className="text-sm text-muted-foreground">中小企業<br />小規模事業者</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">中小企業<br />小規模事業者</p>
                 </div>
               </div>
             </div>
 
             {/* Schedule */}
             <div className="max-w-3xl mx-auto">
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground text-center mb-2">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground text-center mb-2">
                 2026年
               </h3>
-              <h4 className="text-lg sm:text-xl font-bold text-foreground text-center mb-4">
+              <h4 className="text-base sm:text-lg lg:text-xl font-bold text-foreground text-center mb-4 px-2">
                 デジタル化・AI導入補助金申請交付スケジュール
               </h4>
               <p className="text-center text-muted-foreground mb-8">
                 補助金についてはお気軽にご相談ください。
               </p>
               
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 {schedules.map((schedule, index) => (
                   <details key={index} className="group">
-                    <summary className="flex items-center justify-between bg-primary text-primary-foreground px-6 py-4 rounded-lg cursor-pointer list-none">
-                      <span className="font-medium">{schedule.period}</span>
-                      <ChevronDown className="w-5 h-5 transition-transform group-open:rotate-180" />
+                    <summary className="flex items-center justify-between bg-primary text-primary-foreground px-4 sm:px-6 py-3 sm:py-4 rounded-lg cursor-pointer list-none">
+                      <span className="font-medium text-sm sm:text-base">{schedule.period}</span>
+                      <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-open:rotate-180" />
                     </summary>
-                    <div className="bg-card border border-t-0 border-border rounded-b-lg px-6 py-4 -mt-1">
-                      <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="bg-card border border-t-0 border-border rounded-b-lg px-4 sm:px-6 py-3 sm:py-4 -mt-1">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
                         <div>
                           <span className="text-muted-foreground">申請締切：</span>
                           <span className="font-medium text-foreground">{schedule.deadline}</span>
@@ -376,23 +376,23 @@ export default function PricingPage() {
 
         {/* Trust Section */}
         <section className="py-12 sm:py-16 border-t border-border">
-          <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-12">
             <div className="max-w-4xl mx-auto">
-              <div className="grid sm:grid-cols-3 gap-6">
-                <div className="text-center p-6 bg-card rounded-xl border border-border">
-                  <Shield className="w-10 h-10 text-primary mx-auto mb-3" />
-                  <h3 className="font-bold text-foreground mb-2">安心のセキュリティ</h3>
-                  <p className="text-sm text-muted-foreground">SSL暗号化通信・データバックアップで大切な情報を保護</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div className="text-center p-4 sm:p-6 bg-card rounded-xl border border-border">
+                  <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-primary mx-auto mb-2 sm:mb-3" />
+                  <h3 className="font-bold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">安心のセキュリティ</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">SSL暗号化通信・データバックアップで大切な情報を保護</p>
                 </div>
-                <div className="text-center p-6 bg-card rounded-xl border border-border">
-                  <Clock className="w-10 h-10 text-primary mx-auto mb-3" />
-                  <h3 className="font-bold text-foreground mb-2">30日間無料トライアル</h3>
-                  <p className="text-sm text-muted-foreground">全機能をお試しいただけます。クレジットカード不要</p>
+                <div className="text-center p-4 sm:p-6 bg-card rounded-xl border border-border">
+                  <Clock className="w-8 h-8 sm:w-10 sm:h-10 text-primary mx-auto mb-2 sm:mb-3" />
+                  <h3 className="font-bold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">30日間無料トライアル</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">全機能をお試しいただけます。クレジットカード不要</p>
                 </div>
-                <div className="text-center p-6 bg-card rounded-xl border border-border">
-                  <Users className="w-10 h-10 text-primary mx-auto mb-3" />
-                  <h3 className="font-bold text-foreground mb-2">導入サポート無料</h3>
-                  <p className="text-sm text-muted-foreground">専任スタッフが導入から運用までサポート</p>
+                <div className="text-center p-4 sm:p-6 bg-card rounded-xl border border-border">
+                  <Users className="w-8 h-8 sm:w-10 sm:h-10 text-primary mx-auto mb-2 sm:mb-3" />
+                  <h3 className="font-bold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">導入サポート無料</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">専任スタッフが導入から運用までサポート</p>
                 </div>
               </div>
             </div>
