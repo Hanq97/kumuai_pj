@@ -29,6 +29,7 @@ export function Footer() {
               <li><a href="#solutions" className="hover:text-background transition-colors">特徴</a></li>
               <li><a href="#features" className="hover:text-background transition-colors">機能一覧</a></li>
               <li><a href="#why-us" className="hover:text-background transition-colors">選ばれる理由</a></li>
+              <li><a href="/pricing" className="hover:text-background transition-colors">料金プラン</a></li>
               <li><a href="/blog" className="hover:text-background transition-colors">ブログ</a></li>
               <li><a href="#contact" className="hover:text-background transition-colors">お問い合わせ</a></li>
             </ul>

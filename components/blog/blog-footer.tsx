@@ -3,8 +3,8 @@ import Image from "next/image"
 
 export function BlogFooter() {
   return (
-    <footer className="py-8 sm:py-12 bg-foreground text-background">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+    <footer className="py-8 sm:py-10 lg:py-12 bg-foreground text-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-2">
@@ -30,6 +30,7 @@ export function BlogFooter() {
               <li><Link href="/#solutions" className="hover:text-background transition-colors">特徴</Link></li>
               <li><Link href="/#features" className="hover:text-background transition-colors">機能一覧</Link></li>
               <li><Link href="/#why-us" className="hover:text-background transition-colors">選ばれる理由</Link></li>
+              <li><Link href="/pricing" className="hover:text-background transition-colors">料金プラン</Link></li>
               <li><Link href="/blog" className="hover:text-background transition-colors">ブログ</Link></li>
               <li><Link href="/#contact" className="hover:text-background transition-colors">お問い合わせ</Link></li>
             </ul>

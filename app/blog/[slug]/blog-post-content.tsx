@@ -218,7 +218,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
       
       {/* Breadcrumb */}
       <div className="pt-20 sm:pt-24 border-b border-border bg-secondary/30">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-3 sm:py-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <nav className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-muted-foreground overflow-x-auto">
             <Link href="/" className="hover:text-foreground transition-colors whitespace-nowrap">
               ホーム
@@ -236,8 +236,8 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
       </div>
 
       {/* Article */}
-      <article className="py-6 sm:py-10">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+      <article className="py-6 sm:py-8 lg:py-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
             {/* Main Content */}
             <div className="flex-1 max-w-3xl">
@@ -388,8 +388,8 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
       </article>
 
       {/* Related Posts */}
-      <section className="py-10 sm:py-14 bg-secondary/30">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+      <section className="py-8 sm:py-10 lg:py-14 bg-secondary/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-foreground mb-6 sm:mb-8">
             関連記事
           </h2>

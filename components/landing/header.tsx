@@ -11,6 +11,7 @@ const navItems = [
   { label: "ソリューション", href: "#solutions", isExternal: false },
   { label: "機能一覧", href: "#features", isExternal: false },
   { label: "選ばれる理由", href: "#why-us", isExternal: false },
+  { label: "料金プラン", href: "/pricing", isExternal: true },
   { label: "ブログ", href: "/blog", isExternal: true },
   { label: "お問い合わせ", href: "#contact", isExternal: false },
 ]

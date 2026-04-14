@@ -84,12 +84,12 @@ export default function DownloadPage() {
 
       {/* Main Content */}
       <main className="flex-1 pt-20 sm:pt-24">
-        <div className="container mx-auto px-6 sm:px-8 lg:px-12 py-10 sm:py-14">
-          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 max-w-6xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-14">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 max-w-6xl mx-auto">
 
             {/* Left Side - Document Info */}
             <div className="flex-1">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary text-center lg:text-left mb-8 leading-tight">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary text-center lg:text-left mb-6 sm:mb-8 leading-tight">
                 3分で分かる監理ワン<br />
                 資料をダウンロード
               </h1>

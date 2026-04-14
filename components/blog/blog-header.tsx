@@ -18,7 +18,7 @@ export function BlogHeader() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-40 bg-background/95 backdrop-blur border-b border-border">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
