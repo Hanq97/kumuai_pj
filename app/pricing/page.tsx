@@ -224,28 +224,28 @@ export default function PricingPage() {
         <section className="py-10 sm:py-12 lg:py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-primary/80 p-8 sm:p-12 lg:p-16">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary via-primary to-primary/80 p-6 sm:p-10 lg:p-14">
                 {/* Background decoration */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
                 
                 <div className="relative z-10 text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white/10 backdrop-blur-sm rounded-2xl mb-6">
-                    <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-white/10 backdrop-blur-sm rounded-2xl mb-4 sm:mb-6">
+                    <svg className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4">
                     お気軽にお問い合わせください
                   </h2>
-                  <p className="text-white/80 text-sm sm:text-base lg:text-lg mb-8 max-w-xl mx-auto">
-                    各プランの違いや、お見積もりのご依頼など、<br className="hidden sm:block" />
-                    専門スタッフが丁寧にご対応いたします。
+                  <p className="text-white/80 text-xs sm:text-sm lg:text-base mb-6 sm:mb-8 max-w-xl mx-auto px-2">
+                    各プランの違いや、お見積もりのご依頼など、専門スタッフが丁寧にご対応いたします。
                   </p>
                   <Link href="/#contact">
-                    <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-6 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all">
-                      お見積もり・お問い合わせはこちら
+                    <Button size="lg" className="bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all">
+                      <span className="sm:hidden">お問い合わせ</span>
+                      <span className="hidden sm:inline">お見積もり・お問い合わせはこちら</span>
                     </Button>
                   </Link>
                 </div>
