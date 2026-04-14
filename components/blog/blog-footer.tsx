@@ -30,6 +30,7 @@ export function BlogFooter() {
               <li><Link href="/#solutions" className="hover:text-background transition-colors">特徴</Link></li>
               <li><Link href="/#features" className="hover:text-background transition-colors">機能一覧</Link></li>
               <li><Link href="/#why-us" className="hover:text-background transition-colors">選ばれる理由</Link></li>
+              <li><Link href="/pricing" className="hover:text-background transition-colors">料金プラン</Link></li>
               <li><Link href="/blog" className="hover:text-background transition-colors">ブログ</Link></li>
               <li><Link href="/#contact" className="hover:text-background transition-colors">お問い合わせ</Link></li>
             </ul>
