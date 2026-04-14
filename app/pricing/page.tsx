@@ -103,7 +103,7 @@ export default function PricingPage() {
       
       <main className="flex-1 pt-16">
         {/* Hero Section */}
-        <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary/30 to-background">
+        <section className="py-10 sm:py-12 lg:py-16 bg-gradient-to-b from-secondary/30 to-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-block mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 bg-accent/10 rounded-full">
               <span className="text-accent text-xs sm:text-sm font-medium">
@@ -121,7 +121,7 @@ export default function PricingPage() {
         </section>
 
         {/* Pricing Cards */}
-        <section className="py-12 sm:py-16 lg:py-20">
+        <section className="py-10 sm:py-12 lg:py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
               {plans.map((plan, index) => (
@@ -188,7 +188,7 @@ export default function PricingPage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-12 sm:py-16 lg:py-20 bg-secondary/20">
+        <section className="py-10 sm:py-12 lg:py-16 bg-secondary/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8 sm:mb-12">
               <span className="text-primary font-medium text-sm sm:text-base mb-2 block">
@@ -221,7 +221,7 @@ export default function PricingPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-12 sm:py-16 lg:py-20">
+        <section className="py-10 sm:py-12 lg:py-16">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-primary/80 p-8 sm:p-12 lg:p-16">
@@ -255,7 +255,7 @@ export default function PricingPage() {
         </section>
 
         {/* Online Demo */}
-        <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-background to-secondary/30">
+        <section className="py-10 sm:py-12 lg:py-16 bg-gradient-to-b from-background to-secondary/30">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto">
               <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -349,7 +349,7 @@ export default function PricingPage() {
         </section>
 
         {/* IT補助金 Section */}
-        <section className="py-12 sm:py-16 lg:py-24 relative overflow-hidden">
+        <section className="py-10 sm:py-12 lg:py-16 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0 bg-gradient-to-b from-secondary/30 via-background to-secondary/20" />
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
@@ -511,7 +511,7 @@ export default function PricingPage() {
         </section>
 
         {/* Trust Section */}
-        <section className="py-12 sm:py-16 border-t border-border">
+        <section className="py-10 sm:py-12 lg:py-16 border-t border-border">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
