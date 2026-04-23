@@ -8,7 +8,7 @@ import { BlogFooter } from "@/components/blog/blog-footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CheckCircle, Phone } from "lucide-react"
+import { CheckCircle, Phone, Download } from "lucide-react"
 import { toast } from "sonner"
 
 const documentContents = [
@@ -26,7 +26,6 @@ const targetUsers = [
 export default function DownloadPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [agreePrivacy, setAgreePrivacy] = useState(false)
-  const [agreeNewsletter, setAgreeNewsletter] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,11 +42,9 @@ export default function DownloadPage() {
     const data = {
       companyType: formData.get("company-type"),
       companyName: formData.get("company-name"),
-      lastName: formData.get("last-name"),
-      firstName: formData.get("first-name"),
+      name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone"),
-      agreeNewsletter,
     }
     
     try {
@@ -67,7 +64,6 @@ export default function DownloadPage() {
       })
       form.reset()
       setAgreePrivacy(false)
-      setAgreeNewsletter(false)
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
       toast.error("送信に失敗しました", {
@@ -140,149 +136,134 @@ export default function DownloadPage() {
 
             {/* Right Side - Form */}
             <div className="lg:w-[420px]">
-              <div className="bg-card rounded-xl border border-border p-5 sm:p-6 lg:p-8 sticky top-24">
-                <div className="mb-6">
-                  <p className="text-primary font-medium text-center">
-                    フォーム入力後、<br />
-                    資料をダウンロードできます
+              <div className="bg-gradient-to-b from-white to-gray-50/50 rounded-2xl border border-gray-100 p-6 sm:p-8 shadow-sm sticky top-24">
+                {/* Form Header */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+                    案内資料ダウンロード
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    プライバシーポリシーを必ずお読みの上、お問い合わせ下さい。<br />
+                    <span className="text-red-500">※</span>は必須入力項目です。
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
-                      {/* Company Type */}
-                      <div className="space-y-2">
-                        <Label htmlFor="company-type" className="text-sm font-medium">
-                          企業区分
-                        </Label>
-                        <select
-                          id="company-type"
-                          name="company-type"
-                          required
-                          className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                        >
-                          <option value="">選択してください</option>
-                          <option value="kumiai">監理団体（技能実習）</option>
-                          <option value="touroku">登録支援機関（特定技能）</option>
-                          <option value="ukeire">受入れ企業</option>
-                          <option value="okuri">送り出し機関</option>
-                          <option value="other">その他</option>
-                        </select>
-                      </div>
+                  {/* Company Type */}
+                  <div className="space-y-2">
+                    <Label htmlFor="company-type" className="text-sm font-medium text-foreground">
+                      企業区分 <span className="text-red-500">※</span>
+                    </Label>
+                    <select
+                      id="company-type"
+                      name="company-type"
+                      required
+                      className="w-full h-11 px-3 rounded-md border border-gray-200 bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_12px_center] bg-no-repeat"
+                    >
+                      <option value="">選択してください</option>
+                      <option value="kumiai">監理団体（技能実習）</option>
+                      <option value="touroku">登録支援機関（特定技能）</option>
+                      <option value="ukeire">受入れ企業</option>
+                      <option value="okuri">送り出し機関</option>
+                      <option value="other">その他</option>
+                    </select>
+                  </div>
 
-                      {/* Company Name */}
-                      <div className="space-y-2">
-                        <Label htmlFor="company-name" className="text-sm font-medium">
-                          会社名
-                        </Label>
-                        <Input
-                          id="company-name"
-                          name="company-name"
-                          placeholder="株式会社グレッジ"
-                          required
-                          className="bg-background text-sm"
-                        />
-                      </div>
+                  {/* Company Name */}
+                  <div className="space-y-2">
+                    <Label htmlFor="company-name" className="text-sm font-medium text-foreground">
+                      会社名 <span className="text-red-500">※</span>
+                    </Label>
+                    <Input
+                      id="company-name"
+                      name="company-name"
+                      placeholder="例：株式会社DEHA SOLUTIONS"
+                      required
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
 
-                      {/* Name */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-2">
-                          <Label htmlFor="last-name" className="text-sm font-medium">
-                            姓
-                          </Label>
-                          <Input
-                            id="last-name"
-                            name="last-name"
-                            placeholder="山田"
-                            required
-                            className="bg-background text-sm"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="first-name" className="text-sm font-medium">
-                            名
-                          </Label>
-                          <Input
-                            id="first-name"
-                            name="first-name"
-                            placeholder="花子"
-                            required
-                            className="bg-background text-sm"
-                          />
-                        </div>
-                      </div>
+                  {/* Name */}
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm font-medium text-foreground">
+                      お名前 <span className="text-red-500">※</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="例：田中 一郎"
+                      required
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
 
-                      {/* Email */}
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-sm font-medium">
-                          メールアドレス
-                        </Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="info@example.com"
-                          required
-                          className="bg-background text-sm"
-                        />
-                      </div>
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                      メールアドレス <span className="text-red-500">※</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="例：example@mail.com"
+                      required
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
 
-                      {/* Phone */}
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-sm font-medium">
-                          電話番号
-                        </Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          placeholder="0123456789"
-                          className="bg-background text-sm"
-                        />
-                        <p className="text-xs text-muted-foreground">ハイフン(-)無しで入力</p>
-                      </div>
-                      
-                      {error && (
-                        <p className="text-sm text-destructive text-center">{error}</p>
-                      )}
+                  {/* Phone */}
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-sm font-medium text-foreground">
+                      電話番号
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="例：0312345678"
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
+                  
+                  {error && (
+                    <p className="text-sm text-destructive text-center">{error}</p>
+                  )}
 
-                      {/* Checkboxes */}
-                      <div className="space-y-3">
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={agreePrivacy}
-                            onChange={(e) => setAgreePrivacy(e.target.checked)}
-                            className="mt-1 h-4 w-4 rounded border-input text-primary focus:ring-primary"
-                          />
-                          <span className="text-sm text-muted-foreground">
-                            <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-                              プライバシーポリシー
-                            </Link>
-                            に同意する
-                          </span>
-                        </label>
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={agreeNewsletter}
-                            onChange={(e) => setAgreeNewsletter(e.target.checked)}
-                            className="mt-1 h-4 w-4 rounded border-input text-primary focus:ring-primary"
-                          />
-                          <span className="text-sm text-muted-foreground">
-                            業界の最新情報を受け取る
-                          </span>
-                        </label>
-                      </div>
+                  {/* Privacy Checkbox */}
+                  <div className="flex justify-center pt-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={agreePrivacy}
+                        onChange={(e) => setAgreePrivacy(e.target.checked)}
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span className="text-sm text-muted-foreground">
+                        <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                          プライバシーポリシー
+                        </Link>
+                        に同意する
+                      </span>
+                    </label>
+                  </div>
 
-                      {/* Submit Button */}
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting || !agreePrivacy}
-                        className="w-full py-6 bg-accent hover:bg-accent/90 text-accent-foreground font-medium"
-                      >
-                        {isSubmitting ? "送信中..." : "ダウンロードする"}
-                      </Button>
-                    </form>
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || !agreePrivacy}
+                    className="w-full h-12 text-sm font-medium bg-[#4a5568] hover:bg-[#3d4654] text-white rounded-lg"
+                  >
+                    {isSubmitting ? (
+                      "送信中..."
+                    ) : (
+                      <>
+                        <Download className="mr-2 h-4 w-4" />
+                        資料をダウンロードする
+                      </>
+                    )}
+                  </Button>
+                </form>
               </div>
             </div>
           </div>
