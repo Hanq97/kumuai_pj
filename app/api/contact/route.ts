@@ -23,16 +23,27 @@ export async function POST(request: Request) {
     }
 
     const inquiryTypeLabels: Record<string, string> = {
-      kumiai: "組合監理団体向け機能について",
-      touroku: "登録支援機関向け機能について",
-      ukeire: "受け入れ企業向け機能について",
-      document: "書類作成・自動化機能について",
+      kumiai: "組合監理団体向け機能",
+      touroku: "登録支援機関向け機能",
+      ukeire: "受け入れ企業向け機能",
+      document: "書類作成・自動化機能",
       demo: "無料デモの予約",
       estimate: "導入・見積り相談",
       "new-system": "2027年新制度（育成就労）への対応相談",
       support: "サポート・不具合",
       other: "その他",
     }
+
+    // Format current date/time for Japan timezone
+    const now = new Date()
+    const japanTime = now.toLocaleString("ja-JP", { 
+      timeZone: "Asia/Tokyo",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit"
+    })
 
     // Check if SMTP is configured
     if (!SMTP_USER || !SMTP_PASS) {
@@ -56,23 +67,36 @@ export async function POST(request: Request) {
     })
 
     // Send notification email to admin
+    const inquiryTypeLabel = inquiryTypeLabels[inquiryType] || inquiryType
     try {
       await transporter.sendMail({
         from: `監理ワン <${FROM_EMAIL}>`,
         replyTo: email,
         to: ADMIN_EMAIL,
-        subject: `【監理ワン】新しいお問い合わせ`,
+        subject: `【お問合せ/${inquiryTypeLabel}】${organization} - ${name} 様`,
         html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #0f3a5d;">新しいお問い合わせがありました</h2>
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">団体名・会社名</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${organization}</td></tr>
-              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お名前</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${name}</td></tr>
-              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">メールアドレス</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${email}</td></tr>
-              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">電話番号</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${phone || "未入力"}</td></tr>
-              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お問い合わせ種別</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${inquiryTypeLabels[inquiryType] || inquiryType}</td></tr>
-              <tr><td style="padding: 8px; border-bottom: 1px solid #eee; font-weight: bold;">お問い合わせ内容</td><td style="padding: 8px; border-bottom: 1px solid #eee;">${message || "未入力"}</td></tr>
-            </table>
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+            <p>管理者 各位<br />営業担当 各位</p>
+            <p>お疲れ様です。<br />公式サイトの問い合わせフォームより、新規のお問い合わせがありました。内容を確認の上、速やかなフォローアップをお願いいたします。</p>
+            
+            <p style="margin-top: 24px;">===================================================</p>
+            <p><strong>■ 顧客情報・お問い合わせ詳細</strong></p>
+            
+            <p>【種別】 ${inquiryTypeLabel}<br />
+            【会社名】 ${organization}<br />
+            【担当者名】 ${name} 様<br />
+            【Email】 ${email}<br />
+            【Tel】 ${phone || "未入力"}</p>
+            
+            <p>【メッセージ本文】<br />
+            ${message || "未入力"}</p>
+            
+            <p>===================================================</p>
+            
+            <p style="margin-top: 24px; color: #666; font-size: 12px;">
+              送信元：監理ワン 公式サイト・お問合せフォーム<br />
+              送信日時：${japanTime}
+            </p>
           </div>
         `,
       })
@@ -88,22 +112,46 @@ export async function POST(request: Request) {
       await transporter.sendMail({
         from: `監理ワン <${FROM_EMAIL}>`,
         to: email,
-        subject: "【監理ワン】お問い合わせありがとうございます",
+        subject: "【監理ワン】お問い合わせをいただき誠にありがとうございます。",
         html: `
-          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #0f3a5d;">お問い合わせありがとうございます</h2>
-            <p>${name} 様</p>
-            <p>この度は監理ワンにお問い合わせいただき、誠にありがとうございます。</p>
-            <p>以下の内容でお問い合わせを受け付けました。担当者より2営業日以内にご連絡いたします。</p>
-            <div style="background: #f5f5f5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-              <p style="margin: 4px 0;"><strong>団体名・会社名：</strong>${organization}</p>
-              <p style="margin: 4px 0;"><strong>お問い合わせ種別：</strong>${inquiryTypeLabels[inquiryType] || inquiryType}</p>
-              <p style="margin: 4px 0;"><strong>お問い合わせ内容：</strong>${message || "未入力"}</p>
-            </div>
-            <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-            <p style="color: #666; font-size: 12px;">
-              監理ワン<br />
-              Email: support@kanri-one.jp
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+            <p>${organization}<br />${name} 様</p>
+            
+            <p>いつも大変お世話になっております。<br />
+            外国の方労働者管理システム「監理ワン」運営事務局でございます。</p>
+            
+            <p>この度は、数あるサービスの中から「監理ワン」に関心をお寄せいただき、誠にありがとうございます。また、この度はお問い合わせをいただき重ねて御礼申し上げます。</p>
+            
+            <p>頂戴いたしましたお問い合わせ内容につきまして、無事に受領いたしました。弊社担当者が内容を拝見し、順次ご連絡させていただきます。</p>
+            
+            <p>誠に恐れ入りますが、ご連絡を差し上げますので、今しばらくお待ちいただけますと幸いです。</p>
+            
+            <p style="margin-top: 24px;">===================================================</p>
+            <p><strong>■ お問い合わせ内容の控え</strong></p>
+            
+            <p>【お問い合わせ種別】 ${inquiryTypeLabel}<br />
+            【団体名・会社名】 ${organization}<br />
+            【お名前】 ${name} 様<br />
+            【メールアドレス】 ${email}<br />
+            【電話番号】 ${phone || "未入力"}</p>
+            
+            <p>【お問い合わせ内容】<br />
+            ${message || "未入力"}</p>
+            
+            <p>===================================================</p>
+            
+            <p style="margin-top: 16px; font-size: 12px; color: #666;">
+              本メールはシステムによる自動返信となっております。万が一、心当たりのない場合や、数日経過しても弊社からの連絡がない場合には、お手数をおかけいたしますが、下記のお問い合わせ先までご一報いただけますと幸いです。
+            </p>
+            
+            <p>今後とも、「監理ワン」を何卒よろしくお願い申し上げます。</p>
+            
+            <p style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #eee; font-size: 12px; color: #666;">
+              --------------------------------------------------<br />
+              監理ワン 運営事務局<br />
+              お問い合わせ： support@kanri-one.jp<br />
+              監理ワン公式: https://kanri-one.jp<br />
+              --------------------------------------------------
             </p>
           </div>
         `,
