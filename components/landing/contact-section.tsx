@@ -188,10 +188,14 @@ export function ContactSection() {
                     className="w-full h-9 sm:h-10 px-3 rounded-md border border-input bg-background text-sm sm:text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   >
                     <option value="">選択してください</option>
+                    <option value="kumiai">組合監理団体向け機能について</option>
+                    <option value="touroku">登録支援機関向け機能について</option>
+                    <option value="ukeire">受け入れ企業向け機能について</option>
+                    <option value="document">書類作成・自動化機能について</option>
                     <option value="demo">無料デモの予約</option>
-                    <option value="trial">無料トライアルの申込</option>
-                    <option value="estimate">お見積りの相談</option>
-                    <option value="document">資料請求</option>
+                    <option value="estimate">導入・見積り相談</option>
+                    <option value="new-system">2027年新制度（育成就労）への対応相談</option>
+                    <option value="support">サポート・不具合</option>
                     <option value="other">その他</option>
                   </select>
                 </div>

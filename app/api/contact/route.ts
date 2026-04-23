@@ -23,10 +23,14 @@ export async function POST(request: Request) {
     }
 
     const inquiryTypeLabels: Record<string, string> = {
+      kumiai: "組合監理団体向け機能について",
+      touroku: "登録支援機関向け機能について",
+      ukeire: "受け入れ企業向け機能について",
+      document: "書類作成・自動化機能について",
       demo: "無料デモの予約",
-      trial: "無料トライアルの申込",
-      estimate: "お見積りの相談",
-      document: "資料請求",
+      estimate: "導入・見積り相談",
+      "new-system": "2027年新制度（育成就労）への対応相談",
+      support: "サポート・不具合",
       other: "その他",
     }
 
