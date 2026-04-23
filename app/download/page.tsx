@@ -8,25 +8,31 @@ import { BlogFooter } from "@/components/blog/blog-footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CheckCircle, Phone } from "lucide-react"
+import { Download, Check } from "lucide-react"
 import { toast } from "sonner"
 
-const documentContents = [
-  "監理ワンでできること",
-  "導入実績や選べる理由について",
-  "機能一覧・良くある質問など",
-]
-
-const targetUsers = [
-  "監理ワンでできるようになることを知りたい",
-  "技能実習・特定技能の管理システムを探している",
-  "外国人労働者の在留期限と企業データ管理が煩雑",
+const features = [
+  {
+    title: "2027年新制度への完全対応ロードマップ",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
+  {
+    title: "事務工数を70%削減する自動化の具体策",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
+  {
+    title: "監理団体・支援機関の導入成功事例集",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
+  {
+    title: "法令遵守（コンプライアンス）の自動チェック機能",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
 ]
 
 export default function DownloadPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [agreePrivacy, setAgreePrivacy] = useState(false)
-  const [agreeNewsletter, setAgreeNewsletter] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,11 +49,9 @@ export default function DownloadPage() {
     const data = {
       companyType: formData.get("company-type"),
       companyName: formData.get("company-name"),
-      lastName: formData.get("last-name"),
-      firstName: formData.get("first-name"),
+      name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone"),
-      agreeNewsletter,
     }
     
     try {
@@ -67,7 +71,6 @@ export default function DownloadPage() {
       })
       form.reset()
       setAgreePrivacy(false)
-      setAgreeNewsletter(false)
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
       toast.error("送信に失敗しました", {
@@ -79,7 +82,7 @@ export default function DownloadPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc]">
       <BlogHeader />
 
       {/* Main Content */}
@@ -89,199 +92,184 @@ export default function DownloadPage() {
 
             {/* Left Side - Document Info */}
             <div className="flex-1">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary text-center lg:text-left mb-6 sm:mb-8 leading-tight">
-                3分で分かる監理ワン<br />
-                資料をダウンロード
+              {/* Header */}
+              <p className="text-[20px] font-medium mb-2" style={{ color: '#133D63' }}>
+                3分で分かる監理ワン
+              </p>
+              <h1 className="text-[28px] sm:text-[32px] lg:text-[36px] font-bold mb-4 leading-tight" style={{ color: '#143C62' }}>
+                業務の「手間」削減ガイド配布中
               </h1>
+              <p className="text-[14px] mb-6 lg:mb-8 leading-relaxed" style={{ color: '#5B646F' }}>
+                育成就労制度への移行や、膨大な書類作成に追われていませんか？監理ワンが提案する「次世代の管理体制」をまとめました。
+              </p>
 
-              {/* Document Preview */}
-              <div className="relative w-full max-w-md mx-auto lg:mx-0 mb-8">
+              {/* Document Preview Image */}
+              <div className="relative w-full max-w-lg mx-auto lg:mx-0 mb-8">
                 <Image
-                  src="/images/document-preview.jpg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-cT6R2iKjJzJDJIGxlEi3r3HYlyCbO9.png"
                   alt="監理ワン資料プレビュー"
-                  width={500}
-                  height={350}
+                  width={600}
+                  height={400}
                   className="w-full h-auto rounded-lg"
                 />
               </div>
 
-              {/* Document Contents */}
-              <div className="space-y-2 mb-8">
-                {documentContents.map((content, index) => (
-                  <p key={index} className="text-sm sm:text-base text-muted-foreground">
-                    <span className="text-foreground font-medium mr-2">●</span>
-                    {content}
-                  </p>
-                ))}
-              </div>
-
-              {/* Target Users */}
-              <div className="bg-secondary/50 rounded-xl p-5 sm:p-6 mb-8">
-                {targetUsers.map((user, index) => (
-                  <div key={index} className="flex items-start gap-3 mb-3 last:mb-0">
-                    <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <p className="text-sm sm:text-base text-foreground font-medium">{user}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Phone Contact */}
-              <div className="text-sm sm:text-base text-muted-foreground">
-                <p className="mb-2">お電話からも承っておりますのでご連絡ください。</p>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-primary" />
-                  <a href="tel:03-XXXX-XXXX" className="text-primary font-medium hover:underline">
-                    03-XXXX-XXXX
-                  </a>
-                  <span className="text-muted-foreground">（平日10:00〜17:00）</span>
+              {/* Features List */}
+              <div className="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-8">
+                <div className="space-y-5">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold" style={{ color: '#143C62' }}>
+                          {feature.title}
+                        </p>
+                        <p className="text-[13px]" style={{ color: '#5B646F' }}>
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              {/* Bottom Text */}
+              <p className="text-[14px]" style={{ color: '#5B646F' }}>
+                <span className="font-semibold" style={{ color: '#133D63' }}>500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
+              </p>
             </div>
 
             {/* Right Side - Form */}
             <div className="lg:w-[420px]">
-              <div className="bg-card rounded-xl border border-border p-5 sm:p-6 lg:p-8 sticky top-24">
-                <div className="mb-6">
-                  <p className="text-primary font-medium text-center">
-                    フォーム入力後、<br />
-                    資料をダウンロードできます
+              <div className="bg-gradient-to-b from-white to-gray-50/50 rounded-2xl border border-gray-100 p-6 sm:p-8 shadow-sm sticky top-24">
+                {/* Form Header */}
+                <div className="text-center mb-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
+                    案内資料ダウンロード
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    プライバシーポリシーを必ずお読みの上、お問い合わせ下さい。<br />
+                    <span className="text-red-500">※</span>は必須入力項目です。
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
-                      {/* Company Type */}
-                      <div className="space-y-2">
-                        <Label htmlFor="company-type" className="text-sm font-medium">
-                          企業区分
-                        </Label>
-                        <select
-                          id="company-type"
-                          name="company-type"
-                          required
-                          className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                        >
-                          <option value="">選択してください</option>
-                          <option value="kumiai">監理団体</option>
-                          <option value="touroku">登録支援機関</option>
-                          <option value="ukeire">受入れ企業</option>
-                          <option value="other">その他</option>
-                        </select>
-                      </div>
+                  {/* Company Type */}
+                  <div className="space-y-2">
+                    <Label htmlFor="company-type" className="text-sm font-medium text-foreground">
+                      企業区分 <span className="text-red-500">※</span>
+                    </Label>
+                    <select
+                      id="company-type"
+                      name="company-type"
+                      required
+                      className="w-full h-11 px-3 rounded-md border border-gray-200 bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_12px_center] bg-no-repeat"
+                    >
+                      <option value="">選択してください</option>
+                      <option value="kumiai">組合監理団体</option>
+                      <option value="touroku">登録支援機関</option>
+                      <option value="ukeire">受け入れ企業</option>
+                      <option value="other">その他</option>
+                    </select>
+                  </div>
 
-                      {/* Company Name */}
-                      <div className="space-y-2">
-                        <Label htmlFor="company-name" className="text-sm font-medium">
-                          会社名
-                        </Label>
-                        <Input
-                          id="company-name"
-                          name="company-name"
-                          placeholder="株式会社グレッジ"
-                          required
-                          className="bg-background text-sm"
-                        />
-                      </div>
+                  {/* Company Name */}
+                  <div className="space-y-2">
+                    <Label htmlFor="company-name" className="text-sm font-medium text-foreground">
+                      会社名 <span className="text-red-500">※</span>
+                    </Label>
+                    <Input
+                      id="company-name"
+                      name="company-name"
+                      placeholder="例：株式会社DEHA SOLUTIONS"
+                      required
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
 
-                      {/* Name */}
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-2">
-                          <Label htmlFor="last-name" className="text-sm font-medium">
-                            姓
-                          </Label>
-                          <Input
-                            id="last-name"
-                            name="last-name"
-                            placeholder="山田"
-                            required
-                            className="bg-background text-sm"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="first-name" className="text-sm font-medium">
-                            名
-                          </Label>
-                          <Input
-                            id="first-name"
-                            name="first-name"
-                            placeholder="花子"
-                            required
-                            className="bg-background text-sm"
-                          />
-                        </div>
-                      </div>
+                  {/* Name */}
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm font-medium text-foreground">
+                      お名前 <span className="text-red-500">※</span>
+                    </Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      placeholder="例：田中 一郎"
+                      required
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
 
-                      {/* Email */}
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-sm font-medium">
-                          メールアドレス
-                        </Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="info@example.com"
-                          required
-                          className="bg-background text-sm"
-                        />
-                      </div>
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                      メールアドレス <span className="text-red-500">※</span>
+                    </Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="例：example@mail.com"
+                      required
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
 
-                      {/* Phone */}
-                      <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-sm font-medium">
-                          電話番号
-                        </Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          placeholder="0123456789"
-                          className="bg-background text-sm"
-                        />
-                        <p className="text-xs text-muted-foreground">ハイフン(-)無しで入力</p>
-                      </div>
-                      
-                      {error && (
-                        <p className="text-sm text-destructive text-center">{error}</p>
-                      )}
+                  {/* Phone */}
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-sm font-medium text-foreground">
+                      電話番号
+                    </Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="例：0312345678"
+                      className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                    />
+                  </div>
+                  
+                  {error && (
+                    <p className="text-sm text-destructive text-center">{error}</p>
+                  )}
 
-                      {/* Checkboxes */}
-                      <div className="space-y-3">
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={agreePrivacy}
-                            onChange={(e) => setAgreePrivacy(e.target.checked)}
-                            className="mt-1 h-4 w-4 rounded border-input text-primary focus:ring-primary"
-                          />
-                          <span className="text-sm text-muted-foreground">
-                            <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
-                              プライバシーポリシー
-                            </Link>
-                            に同意する
-                          </span>
-                        </label>
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={agreeNewsletter}
-                            onChange={(e) => setAgreeNewsletter(e.target.checked)}
-                            className="mt-1 h-4 w-4 rounded border-input text-primary focus:ring-primary"
-                          />
-                          <span className="text-sm text-muted-foreground">
-                            業界の最新情報を受け取る
-                          </span>
-                        </label>
-                      </div>
+                  {/* Privacy Checkbox */}
+                  <div className="flex justify-center pt-2">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={agreePrivacy}
+                        onChange={(e) => setAgreePrivacy(e.target.checked)}
+                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                      />
+                      <span className="text-sm text-muted-foreground">
+                        <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                          プライバシーポリシー
+                        </Link>
+                        に同意する
+                      </span>
+                    </label>
+                  </div>
 
-                      {/* Submit Button */}
-                      <Button
-                        type="submit"
-                        disabled={isSubmitting || !agreePrivacy}
-                        className="w-full py-6 bg-accent hover:bg-accent/90 text-accent-foreground font-medium"
-                      >
-                        {isSubmitting ? "送信中..." : "ダウンロードする"}
-                      </Button>
-                    </form>
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || !agreePrivacy}
+                    className="w-full h-12 text-sm font-medium bg-[#4a5568] hover:bg-[#3d4654] text-white rounded-lg"
+                  >
+                    {isSubmitting ? (
+                      "送信中..."
+                    ) : (
+                      <>
+                        <Download className="mr-2 h-4 w-4" />
+                        資料をダウンロードする
+                      </>
+                    )}
+                  </Button>
+                </form>
               </div>
             </div>
           </div>

@@ -2,20 +2,41 @@
 
 import React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Phone, Mail, Send } from "lucide-react"
 import { toast } from "sonner"
+import Link from "next/link"
 
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [selectedInquiryType, setSelectedInquiryType] = useState("")
+  const [agreePrivacy, setAgreePrivacy] = useState(false)
+
+  // Check URL params on mount and on hash change to auto-select inquiry type
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash
+      if (hash.includes("type=demo")) {
+        setSelectedInquiryType("demo")
+      }
+    }
+    
+    checkHash()
+    window.addEventListener("hashchange", checkHash)
+    return () => window.removeEventListener("hashchange", checkHash)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (!agreePrivacy) {
+      toast.error("プライバシーポリシーに同意してください。")
+      return
+    }
     setIsSubmitting(true)
     setError(null)
     
@@ -46,6 +67,8 @@ export function ContactSection() {
         description: "担当者より2営業日以内にご連絡いたします。",
       })
       form.reset()
+      setSelectedInquiryType("")
+      setAgreePrivacy(false)
     } catch {
       setError("送信に失敗しました。もう一度お試しください。")
       toast.error("送信に失敗しました", {
@@ -113,105 +136,144 @@ export function ContactSection() {
           </div>
           
           {/* Contact Form */}
-          <div className="bg-card p-4 sm:p-6 lg:p-8 rounded-xl border border-border">
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                  <div className="space-y-1.5 sm:space-y-2">
-                    <Label htmlFor="organization" className="text-sm">団体名・会社名 <span className="text-destructive">*</span></Label>
-                    <Input 
-                      id="organization"
-                      name="organization"
-                      placeholder="例：〇〇協同組合" 
-                      required 
-                      className="bg-background text-sm sm:text-base"
-                    />
-                  </div>
-                  <div className="space-y-1.5 sm:space-y-2">
-                    <Label htmlFor="name" className="text-sm">お名前 <span className="text-destructive">*</span></Label>
-                    <Input 
-                      id="name"
-                      name="name"
-                      placeholder="例：山田 太郎" 
-                      required 
-                      className="bg-background text-sm sm:text-base"
-                    />
-                  </div>
-                </div>
-                
-                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                  <div className="space-y-1.5 sm:space-y-2">
-                    <Label htmlFor="email" className="text-sm">メールアドレス <span className="text-destructive">*</span></Label>
-                    <Input 
-                      id="email"
-                      name="email"
-                      type="email" 
-                      placeholder="example@mail.com" 
-                      required 
-                      className="bg-background text-sm sm:text-base"
-                    />
-                  </div>
-                  <div className="space-y-1.5 sm:space-y-2">
-                    <Label htmlFor="phone" className="text-sm">電話番号</Label>
-                    <Input 
-                      id="phone"
-                      name="phone"
-                      type="tel" 
-                      placeholder="03-XXXX-XXXX" 
-                      className="bg-background text-sm sm:text-base"
-                    />
-                  </div>
-                </div>
-                
-                <div className="space-y-1.5 sm:space-y-2">
-                  <Label htmlFor="inquiry-type" className="text-sm">お問い合わせ種別 <span className="text-destructive">*</span></Label>
-                  <select 
-                    id="inquiry-type"
-                    name="inquiry-type"
-                    required
-                    className="w-full h-9 sm:h-10 px-3 rounded-md border border-input bg-background text-sm sm:text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                  >
-                    <option value="">選択してください</option>
-                    <option value="demo">無料デモの予約</option>
-                    <option value="document">資料請求</option>
-                    <option value="pricing">料金について</option>
-                    <option value="other">その他のご相談</option>
-                  </select>
-                </div>
-                
-                <div className="space-y-1.5 sm:space-y-2">
-                  <Label htmlFor="message" className="text-sm">お問い合わせ内容</Label>
-                  <Textarea 
-                    id="message"
-                    name="message"
-                    placeholder="ご質問やご要望をご記入ください"
-                    rows={4}
-                    className="bg-background resize-none text-sm sm:text-base"
+          <div className="bg-card p-5 sm:p-6 lg:p-8 rounded-2xl border border-border shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Row 1: Organization & Name */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="organization" className="text-sm font-medium text-foreground">
+                    団体名・会社名 <span className="text-red-500">※</span>
+                  </Label>
+                  <Input 
+                    id="organization"
+                    name="organization"
+                    placeholder="例：株式会社DEHA SOLUTIONS" 
+                    required 
+                    className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
                   />
                 </div>
-                
-                {error && (
-                  <p className="text-sm text-destructive text-center">{error}</p>
-                )}
-                
-                <Button 
-                  type="submit" 
-                  className="w-full py-5 sm:py-6 text-sm sm:text-base bg-primary hover:bg-primary/90 text-primary-foreground"
-                  disabled={isSubmitting}
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-sm font-medium text-foreground">
+                    お名前 <span className="text-red-500">※</span>
+                  </Label>
+                  <Input 
+                    id="name"
+                    name="name"
+                    placeholder="例：田中 一郎" 
+                    required 
+                    className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                  />
+                </div>
+              </div>
+              
+              {/* Row 2: Email & Phone */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                    メールアドレス <span className="text-red-500">※</span>
+                  </Label>
+                  <Input 
+                    id="email"
+                    name="email"
+                    type="email" 
+                    placeholder="例：example@mail.com" 
+                    required 
+                    className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-sm font-medium text-foreground">
+                    電話番号
+                  </Label>
+                  <Input 
+                    id="phone"
+                    name="phone"
+                    type="tel" 
+                    placeholder="例：0312345678" 
+                    className="bg-background h-11 text-sm border-gray-200 placeholder:text-gray-400"
+                  />
+                </div>
+              </div>
+              
+              {/* Inquiry Type */}
+              <div className="space-y-2">
+                <Label htmlFor="inquiry-type" className="text-sm font-medium text-foreground">
+                  お問い合わせ種別 <span className="text-red-500">※</span>
+                </Label>
+                <select 
+                  id="inquiry-type"
+                  name="inquiry-type"
+                  required
+                  value={selectedInquiryType}
+                  onChange={(e) => setSelectedInquiryType(e.target.value)}
+                  className="w-full h-11 px-3 rounded-md border border-gray-200 bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_12px_center] bg-no-repeat"
                 >
-                  {isSubmitting ? (
-                    "送信中..."
-                  ) : (
-                    <>
-                      <Send className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                      送信する
-                    </>
-                  )}
-                </Button>
-                
-                <p className="text-[10px] sm:text-xs text-muted-foreground text-center">
-                  ※ お送りいただいた情報は、お問い合わせへの回答以外の目的では使用いたしません。
-                </p>
-              </form>
+                  <option value="">選択してください</option>
+                  <option value="kumiai">組合監理団体向け機能</option>
+                  <option value="touroku">登録支援機関向け機能</option>
+                  <option value="ukeire">受け入れ企業向け機能</option>
+                  <option value="document">書類作成・自動化機能</option>
+                  <option value="demo">無料デモの予約</option>
+                  <option value="estimate">導入・見積り相談</option>
+                  <option value="new-system">2027年新制度（育成就労）への対応相談</option>
+                  <option value="support">サポート・不具合</option>
+                  <option value="other">その他</option>
+                </select>
+              </div>
+              
+              {/* Message */}
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-sm font-medium text-foreground">
+                  お問い合わせ内容 <span className="text-red-500">※</span>
+                </Label>
+                <Textarea 
+                  id="message"
+                  name="message"
+                  placeholder="ご質問やご要望をご記入ください"
+                  rows={5}
+                  required
+                  className="bg-background resize-none text-sm border-gray-200 placeholder:text-gray-400"
+                />
+              </div>
+              
+              {error && (
+                <p className="text-sm text-destructive text-center">{error}</p>
+              )}
+              
+              {/* Privacy Checkbox */}
+              <div className="flex justify-center">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={agreePrivacy}
+                    onChange={(e) => setAgreePrivacy(e.target.checked)}
+                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm text-muted-foreground">
+                    <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                      プライバシーポリシー
+                    </Link>
+                    に同意する
+                  </span>
+                </label>
+              </div>
+              
+              {/* Submit Button */}
+              <Button 
+                type="submit" 
+                className="w-full h-12 text-sm font-medium bg-[#4a5568] hover:bg-[#3d4654] text-white rounded-lg"
+                disabled={isSubmitting || !agreePrivacy}
+              >
+                {isSubmitting ? (
+                  "送信中..."
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    この内容で送信する
+                  </>
+                )}
+              </Button>
+            </form>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ export function BlogHeader() {
               className="bg-accent hover:bg-accent/90 text-accent-foreground"
               asChild
             >
-              <Link href="/#contact">無料デモを予約</Link>
+              <Link href="/#contact?type=demo">無料デモを予約</Link>
             </Button>
           </div>
 
@@ -85,7 +85,7 @@ export function BlogHeader() {
                   className="w-full text-sm sm:text-base bg-accent hover:bg-accent/90 text-accent-foreground"
                   asChild
                 >
-                  <Link href="/#contact">無料デモを予約</Link>
+                  <Link href="/#contact?type=demo">無料デモを予約</Link>
                 </Button>
               </div>
             </nav>

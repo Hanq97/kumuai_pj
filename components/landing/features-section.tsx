@@ -44,13 +44,6 @@ const features = [
     image: "/images/feature-6.png"
   },
   {
-    iconImage: "/images/kinou_icon7.png",
-    title: "多言語切り替え機能",
-    subtitle: "【解決】「外国人スタッフ」との情報共有をスムーズに",
-    description: "日本語、ベトナム語、英語などの主要言語に対応。外国人支援スタッフも母国語で正確に情報を入力・確認できるため、現場での入力ミスやコミュニケーションの齟齬を防ぎます。",
-    image: "/images/feature-7.png"
-  },
-  {
     iconImage: "/images/kinou_icon8.png",
     title: "法制度アップデートへの自動追従",
     subtitle: "【解決】「法改正」への対応コストと不安を最小限に",

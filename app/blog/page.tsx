@@ -139,7 +139,7 @@ export default function BlogPage() {
                 className="text-sm sm:text-base bg-accent hover:bg-accent/90 text-accent-foreground"
                 asChild
               >
-                <Link href="/#contact">
+                <Link href="/#contact?type=demo">
                   無料デモを予約する
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
