@@ -161,9 +161,10 @@ export default function DownloadPage() {
                           className="w-full h-10 px-3 rounded-md border border-input bg-background text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         >
                           <option value="">選択してください</option>
-                          <option value="kumiai">監理団体</option>
-                          <option value="touroku">登録支援機関</option>
+                          <option value="kumiai">監理団体（技能実習）</option>
+                          <option value="touroku">登録支援機関（特定技能）</option>
                           <option value="ukeire">受入れ企業</option>
+                          <option value="okuri">送り出し機関</option>
                           <option value="other">その他</option>
                         </select>
                       </div>

@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,6 +13,21 @@ import { toast } from "sonner"
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [selectedInquiryType, setSelectedInquiryType] = useState("")
+
+  // Check URL params on mount and on hash change to auto-select inquiry type
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash
+      if (hash.includes("type=demo")) {
+        setSelectedInquiryType("demo")
+      }
+    }
+    
+    checkHash()
+    window.addEventListener("hashchange", checkHash)
+    return () => window.removeEventListener("hashchange", checkHash)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -168,13 +183,16 @@ export function ContactSection() {
                     id="inquiry-type"
                     name="inquiry-type"
                     required
+                    value={selectedInquiryType}
+                    onChange={(e) => setSelectedInquiryType(e.target.value)}
                     className="w-full h-9 sm:h-10 px-3 rounded-md border border-input bg-background text-sm sm:text-base text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                   >
                     <option value="">選択してください</option>
                     <option value="demo">無料デモの予約</option>
+                    <option value="trial">無料トライアルの申込</option>
+                    <option value="estimate">お見積りの相談</option>
                     <option value="document">資料請求</option>
-                    <option value="pricing">料金について</option>
-                    <option value="other">その他のご相談</option>
+                    <option value="other">その他</option>
                   </select>
                 </div>
                 

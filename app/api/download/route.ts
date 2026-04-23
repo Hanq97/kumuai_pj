@@ -23,9 +23,10 @@ export async function POST(request: Request) {
     }
 
     const companyTypeLabels: Record<string, string> = {
-      kumiai: "監理団体",
-      touroku: "登録支援機関",
+      kumiai: "監理団体（技能実習）",
+      touroku: "登録支援機関（特定技能）",
       ukeire: "受入れ企業",
+      okuri: "送り出し機関",
       other: "その他",
     }
 

@@ -328,7 +328,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                   className="w-full text-sm bg-accent hover:bg-accent/90 text-accent-foreground"
                   asChild
                 >
-                  <Link href="/#contact">
+                  <Link href="/#contact?type=demo">
                     無料デモを予約
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -375,7 +375,7 @@ export default function BlogPostContent({ post, relatedPosts }: BlogPostContentP
                     className="w-full text-sm bg-accent hover:bg-accent/90 text-accent-foreground"
                     asChild
                   >
-                    <Link href="/#contact">
+                    <Link href="/#contact?type=demo">
                       無料デモを予約
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>

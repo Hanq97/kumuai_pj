@@ -35,7 +35,7 @@ export default function TermsPage() {
             
             <div className="prose prose-sm sm:prose-base max-w-none text-foreground">
               <p className="text-muted-foreground leading-relaxed mb-8">
-                本利用規約（以下「本規約」といいます。）は、株式会社監理ワン（以下「当社」といいます。）が「監理ワン」の名称で提供するサービス及びその関連サービス（以下「本サービス」といいます。）の提供条件及び利用者と当社との間の権利義務関係を定めるものです。本サービスのご利用に際しては、本規約の全文をお読みいただいたうえで、同意いただく必要があります。
+                本利用規約（以下「本規約」といいます。）は、株式会社DEHA SOLUTIONS（以下「当社」といいます。）が「監理ワン」の名称で提供するサービス及びその関連サービス（以下「本サービス」といいます。）の提供条件及び利用者と当社との間の権利義務関係を定めるものです。本サービスのご利用に際しては、本規約の全文をお読みいただいたうえで、同意いただく必要があります。
               </p>
 
               <section className="mb-8">
@@ -137,8 +137,23 @@ export default function TermsPage() {
                 <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第9条（準拠法・裁判管轄）</h2>
                 <ol className="list-decimal list-inside text-muted-foreground space-y-3 ml-4">
                   <li>本規約の解釈にあたっては、日本法を準拠法とします。</li>
-                  <li>本サービスに関して紛争が生じた場合には、当社の本店所在地を管轄する裁判所を専属的合意管轄とします。</li>
+                  <li>本サービスに関して紛争が生じた場合には、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</li>
                 </ol>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第10条（お問い合わせ窓口）</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  本規約に関するお問い合わせは、下記の窓口までお願いいたします。
+                </p>
+                <div className="mt-4 p-4 bg-secondary/50 rounded-lg">
+                  <p className="text-foreground font-medium">株式会社DEHA SOLUTIONS</p>
+                  <p className="text-muted-foreground text-sm mt-2">
+                    住所：〒104-0033 東京都中央区新川1丁目27-8 新川大原ビル 2F<br />
+                    電話番号：(+81) 3-6260-6226<br />
+                    メールアドレス：support@kanri-one.jp
+                  </p>
+                </div>
               </section>
 
               <p className="text-muted-foreground text-sm mt-8">

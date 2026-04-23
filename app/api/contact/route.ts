@@ -24,9 +24,10 @@ export async function POST(request: Request) {
 
     const inquiryTypeLabels: Record<string, string> = {
       demo: "無料デモの予約",
+      trial: "無料トライアルの申込",
+      estimate: "お見積りの相談",
       document: "資料請求",
-      pricing: "料金について",
-      other: "その他のご相談",
+      other: "その他",
     }
 
     // Check if SMTP is configured

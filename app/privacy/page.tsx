@@ -35,11 +35,11 @@ export default function PrivacyPolicyPage() {
             
             <div className="prose prose-sm sm:prose-base max-w-none text-foreground">
               <p className="text-muted-foreground leading-relaxed mb-8">
-                株式会社監理ワン（以下「当社」といいます。）は、当社が提供するサービス「監理ワン」（以下「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます。）を定めます。
+                株式会社DEHA SOLUTIONS（以下「当社」といいます。）は、当社が提供するサービス「監理ワン」（以下「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下「本ポリシー」といいます。）を定めます。
               </p>
 
               <section className="mb-8">
-                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第1条（個人情報）</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第1条（個人情報の定義）</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報及び容貌、指紋、声紋にかかるデータ、及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
                 </p>
@@ -48,8 +48,13 @@ export default function PrivacyPolicyPage() {
               <section className="mb-8">
                 <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第2条（個人情報の収集方法）</h2>
                 <p className="text-muted-foreground leading-relaxed mb-4">
-                  当社は、ユーザーが利用登録をする際に氏名、生年月日、住所、電話番号、メールアドレス、銀行口座番号、クレジットカード番号、運転免許証番号などの個人情報をお尋ねすることがあります。また、ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を、当社の提携先（情報提供元、広告主、広告配信先などを含みます。以下「提携先」といいます。）などから収集することがあります。
+                  当社は、以下の方法により個人情報を収集することがあります。
                 </p>
+                <ol className="list-decimal list-inside text-muted-foreground space-y-2 ml-4">
+                  <li>お問い合わせフォームやサービス利用登録を通じて直接ご提供いただく情報</li>
+                  <li>本サービスの利用履歴やアクセスログなどの自動的に収集される情報</li>
+                  <li>当社の提携先（情報提供元、広告主、広告配信先などを含む）から提供される情報</li>
+                </ol>
               </section>
 
               <section className="mb-8">
@@ -110,20 +115,29 @@ export default function PrivacyPolicyPage() {
               </section>
 
               <section className="mb-8">
-                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第9条（プライバシーポリシーの変更）</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第9条（Cookieの使用について）</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  当社のウェブサイトでは、ユーザーの利便性向上やサービス改善のためにCookieを使用しています。ユーザーはブラウザの設定により、Cookieの受け入れを拒否することができますが、その場合一部のサービスがご利用いただけない場合があります。
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第10条（プライバシーポリシーの変更）</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、ユーザーに通知することなく、変更することができるものとします。当社が別途定める場合を除いて、変更後のプライバシーポリシーは、本ウェブサイトに掲載したときから効力を生じるものとします。
                 </p>
               </section>
 
               <section className="mb-8">
-                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第10条（お問い合わせ窓口）</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-foreground mb-4">第11条（お問い合わせ窓口）</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。
                 </p>
                 <div className="mt-4 p-4 bg-secondary/50 rounded-lg">
-                  <p className="text-foreground font-medium">株式会社監理ワン</p>
+                  <p className="text-foreground font-medium">株式会社DEHA SOLUTIONS</p>
                   <p className="text-muted-foreground text-sm mt-2">
+                    住所：〒104-0033 東京都中央区新川1丁目27-8 新川大原ビル 2F<br />
+                    電話番号：(+81) 3-6260-6226<br />
                     メールアドレス：support@kanri-one.jp
                   </p>
                 </div>

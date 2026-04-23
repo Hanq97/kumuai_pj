@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button"
 import { Calendar, ArrowRight } from "lucide-react"
 
 export function CTASection() {
-  const scrollToContact = () => {
+  const scrollToContactWithDemo = () => {
+    // Update URL hash to trigger auto-select demo
+    window.history.replaceState(null, "", "#contact?type=demo")
+    // Dispatch event to notify contact section
+    window.dispatchEvent(new HashChangeEvent("hashchange"))
     const contactSection = document.getElementById("contact")
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: "smooth" })
@@ -29,7 +33,7 @@ export function CTASection() {
             size="lg" 
             className="text-sm sm:text-base px-6 sm:px-10 py-5 sm:py-6 text-white hover:opacity-90"
             style={{ backgroundColor: '#00EBB5' }}
-            onClick={scrollToContact}
+            onClick={scrollToContactWithDemo}
           >
             <Calendar className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
             今すぐ無料デモを予約する
