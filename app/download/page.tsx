@@ -8,19 +8,26 @@ import { BlogFooter } from "@/components/blog/blog-footer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CheckCircle, Phone, Download } from "lucide-react"
+import { Download, Check } from "lucide-react"
 import { toast } from "sonner"
 
-const documentContents = [
-  "監理ワンでできること",
-  "導入実績や選べる理由について",
-  "機能一覧・良くある質問など",
-]
-
-const targetUsers = [
-  "監理ワンでできるようになることを知りたい",
-  "技能実習・特定技能の管理システムを探している",
-  "外国人労働者の在留期限と企業データ管理が煩雑",
+const features = [
+  {
+    title: "2027年新制度への完全対応ロードマップ",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
+  {
+    title: "事務工数を70%削減する自動化の具体策",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
+  {
+    title: "監理団体・支援機関の導入成功事例集",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
+  {
+    title: "法令遵守（コンプライアンス）の自動チェック機能",
+    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+  },
 ]
 
 export default function DownloadPage() {
@@ -75,7 +82,7 @@ export default function DownloadPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-[#f8fafc]">
       <BlogHeader />
 
       {/* Main Content */}
@@ -85,53 +92,51 @@ export default function DownloadPage() {
 
             {/* Left Side - Document Info */}
             <div className="flex-1">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary text-center lg:text-left mb-6 sm:mb-8 leading-tight">
-                3分で分かる監理ワン<br />
-                資料をダウンロード
+              {/* Header */}
+              <p className="text-sm sm:text-base text-primary font-medium mb-2">
+                3分で分かる監理ワン
+              </p>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
+                業務の「手間」削減ガイド配布中
               </h1>
+              <p className="text-sm sm:text-base text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
+                育成就労制度への移行や、膨大な書類作成に追われていませんか？監理ワンが提案する「次世代の管理体制」をまとめました。
+              </p>
 
-              {/* Document Preview */}
-              <div className="relative w-full max-w-md mx-auto lg:mx-0 mb-8">
+              {/* Document Preview Image */}
+              <div className="relative w-full max-w-lg mx-auto lg:mx-0 mb-8">
                 <Image
-                  src="/images/document-preview.jpg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-cT6R2iKjJzJDJIGxlEi3r3HYlyCbO9.png"
                   alt="監理ワン資料プレビュー"
-                  width={500}
-                  height={350}
+                  width={600}
+                  height={400}
                   className="w-full h-auto rounded-lg"
                 />
               </div>
 
-              {/* Document Contents */}
-              <div className="space-y-2 mb-8">
-                {documentContents.map((content, index) => (
-                  <p key={index} className="text-sm sm:text-base text-muted-foreground">
-                    <span className="text-foreground font-medium mr-2">●</span>
-                    {content}
-                  </p>
-                ))}
-              </div>
-
-              {/* Target Users */}
-              <div className="bg-secondary/50 rounded-xl p-5 sm:p-6 mb-8">
-                {targetUsers.map((user, index) => (
-                  <div key={index} className="flex items-start gap-3 mb-3 last:mb-0">
-                    <CheckCircle className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <p className="text-sm sm:text-base text-foreground font-medium">{user}</p>
+              {/* Features List */}
+              <div className="space-y-4 mb-8">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                      <Check className="w-3 h-3 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm sm:text-base font-semibold text-foreground">
+                        {feature.title}
+                      </p>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
 
-              {/* Phone Contact */}
-              <div className="text-sm sm:text-base text-muted-foreground">
-                <p className="mb-2">お電話からも承っておりますのでご連絡ください。</p>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-primary" />
-                  <a href="tel:03-XXXX-XXXX" className="text-primary font-medium hover:underline">
-                    03-XXXX-XXXX
-                  </a>
-                  <span className="text-muted-foreground">（平日10:00〜17:00）</span>
-                </div>
-              </div>
+              {/* Bottom Text */}
+              <p className="text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
+              </p>
             </div>
 
             {/* Right Side - Form */}
