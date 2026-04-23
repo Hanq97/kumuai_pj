@@ -93,13 +93,13 @@ export default function DownloadPage() {
             {/* Left Side - Document Info */}
             <div className="flex-1">
               {/* Header */}
-              <p className="text-sm sm:text-base text-primary font-medium mb-2">
+              <p className="text-[20px] font-medium mb-2" style={{ color: '#133D63' }}>
                 3分で分かる監理ワン
               </p>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 leading-tight">
+              <h1 className="text-[28px] sm:text-[32px] lg:text-[36px] font-bold mb-4 leading-tight" style={{ color: '#143C62' }}>
                 業務の「手間」削減ガイド配布中
               </h1>
-              <p className="text-sm sm:text-base text-muted-foreground mb-6 lg:mb-8 leading-relaxed">
+              <p className="text-[14px] mb-6 lg:mb-8 leading-relaxed" style={{ color: '#5B646F' }}>
                 育成就労制度への移行や、膨大な書類作成に追われていませんか？監理ワンが提案する「次世代の管理体制」をまとめました。
               </p>
 
@@ -115,27 +115,29 @@ export default function DownloadPage() {
               </div>
 
               {/* Features List */}
-              <div className="space-y-4 mb-8">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                      <Check className="w-3 h-3 text-primary" />
+              <div className="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-8">
+                <div className="space-y-5">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold" style={{ color: '#143C62' }}>
+                          {feature.title}
+                        </p>
+                        <p className="text-[13px]" style={{ color: '#5B646F' }}>
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm sm:text-base font-semibold text-foreground">
-                        {feature.title}
-                      </p>
-                      <p className="text-xs sm:text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               {/* Bottom Text */}
-              <p className="text-sm text-muted-foreground">
-                <span className="font-semibold text-foreground">500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
+              <p className="text-[14px]" style={{ color: '#5B646F' }}>
+                <span className="font-semibold" style={{ color: '#133D63' }}>500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
               </p>
             </div>
 
