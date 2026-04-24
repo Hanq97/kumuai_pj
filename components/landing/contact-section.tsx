@@ -103,8 +103,8 @@ export function ContactSection() {
                   <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
-                  <p className="text-lg sm:text-2xl font-bold text-primary">03-XXXX-XXXX</p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">受付時間：平日 9:00〜18:00</p>
+                  <p className="text-lg sm:text-2xl font-bold text-primary">03-6260-6226</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">受付時間：平日 10:00〜19:00</p>
                 </div>
               </div>
             </div>
@@ -124,13 +124,12 @@ export function ContactSection() {
               </div>
             </div>
             
-            <div className="p-4 sm:p-6 bg-accent/10 rounded-lg border border-accent/20">
-              <h4 className="text-sm sm:text-base font-semibold text-foreground mb-1 sm:mb-2">
+            <div className="p-4 sm:p-6 bg-[#008C6C]/5 rounded-lg border border-[#008C6C]/20">
+              <h4 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2" style={{ color: '#008C6C' }}>
                 無料デモのご案内
               </h4>
-              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                実際の画面を見ながら、貴組合の業務に合わせた活用方法をご提案いたします。
-                所要時間は約30分程度です。
+              <p className="text-xs sm:text-sm leading-relaxed" style={{ color: '#133D63' }}>
+                実際の画面を見ながら、貴組合の業務に合わせた活用方法をご提案いたします。所要時間は約30分程度です。
               </p>
             </div>
           </div>
