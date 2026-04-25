@@ -103,24 +103,19 @@ export default function DownloadPage() {
                 育成就労への制度移行に不安はありませんか？ 書類作成や監査対応の属人化から脱却し、監理ワンが提案する効率的な管理体制を今すぐ確認してください。
               </p>
 
-              {/* White Card with Image and Features */}
+              {/* Document Preview Image - Outside card */}
+              <div className="relative w-full mb-6">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-MnK0um8WpRKOtb1bowdEN4qv04mhS8.png"
+                  alt="監理ワン資料プレビュー"
+                  width={800}
+                  height={500}
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+
+              {/* White Card with Features */}
               <div className="bg-white rounded-xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-6">
-                {/* Document Preview Image */}
-                <div className="relative w-full mb-6">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-cT6R2iKjJzJDJIGxlEi3r3HYlyCbO9.png"
-                    alt="監理ワン資料プレビュー"
-                    width={800}
-                    height={500}
-                    className="w-full h-auto rounded-lg"
-                  />
-                </div>
-
-                {/* Section Title */}
-                <p className="text-[13px] sm:text-[14px] font-medium mb-4" style={{ color: '#5B646F' }}>
-                  【この資料で分かること】
-                </p>
-
                 {/* Features List */}
                 <div className="space-y-4 sm:space-y-5">
                   {features.map((feature, index) => (
@@ -141,8 +136,8 @@ export default function DownloadPage() {
                 </div>
               </div>
 
-              {/* Bottom Text */}
-              <p className="text-[13px] sm:text-[14px]" style={{ color: '#5B646F' }}>
+              {/* Bottom Text - Centered */}
+              <p className="text-[13px] sm:text-[14px] text-center" style={{ color: '#5B646F' }}>
                 <span className="font-semibold" style={{ color: '#133D63' }}>500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
               </p>
             </div>
@@ -165,7 +160,7 @@ export default function DownloadPage() {
                   {/* Company Type */}
                   <div className="space-y-2">
                     <Label htmlFor="company-type" className="text-sm font-medium text-foreground">
-                      企業区分 <span className="text-red-500">※</span>
+                      企業区�� <span className="text-red-500">※</span>
                     </Label>
                     <select
                       id="company-type"
