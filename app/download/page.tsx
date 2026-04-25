@@ -106,7 +106,7 @@ export default function DownloadPage() {
               {/* Document Preview Image - Outside card */}
               <div className="relative w-full my-[20px] mx-[28px] sm:mx-0 sm:px-[28px]">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-MnK0um8WpRKOtb1bowdEN4qv04mhS8.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-nYy6frc1hlWJGWtzvc7xYutPvGTXcU.png"
                   alt="監理ワン資料プレビュー"
                   width={800}
                   height={500}
@@ -160,7 +160,7 @@ export default function DownloadPage() {
                   {/* Company Type */}
                   <div className="space-y-2">
                     <Label htmlFor="company-type" className="text-sm font-medium text-foreground">
-                      企業区�� <span className="text-red-500">※</span>
+                      企業区分 <span className="text-red-500">※</span>
                     </Label>
                     <select
                       id="company-type"
@@ -222,7 +222,7 @@ export default function DownloadPage() {
                   {/* Phone */}
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-sm font-medium text-foreground">
-                      電話番���
+                      電話番号
                     </Label>
                     <Input
                       id="phone"
