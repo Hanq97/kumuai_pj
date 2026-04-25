@@ -160,7 +160,7 @@ export default function DownloadPage() {
                   {/* Company Type */}
                   <div className="space-y-2">
                     <Label htmlFor="company-type" className="text-sm font-medium text-foreground">
-                      企業区�� <span className="text-red-500">※</span>
+                      企業区分 <span className="text-red-500">※</span>
                     </Label>
                     <select
                       id="company-type"
@@ -222,7 +222,7 @@ export default function DownloadPage() {
                   {/* Phone */}
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-sm font-medium text-foreground">
-                      電話番���
+                      電話番号
                     </Label>
                     <Input
                       id="phone"
