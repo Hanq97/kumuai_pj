@@ -18,15 +18,15 @@ const features = [
   },
   {
     title: "事務工数を70%削減する自動化の具体策",
-    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+    description: "Webブラウザで完結する業務フロー。PC・タブレットを問わず、どこからでもアクセス可能な環境で事務工数を最大70%削減。"
   },
   {
     title: "監理団体・支援機関の導入成功事例集",
-    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+    description: "監理団体・支援機関が監理ワンを選んだ「現場の声」と、具体的な導入成果。"
   },
   {
     title: "法令遵守（コンプライアンス）の自動チェック機能",
-    description: "「育成就労」への移行スケジュールと、システムでの対応方法を網羅。"
+    description: "弁護士・行政書士監修。法改正に即応する自動チェック機能の全貌。"
   },
 ]
 
@@ -93,40 +93,41 @@ export default function DownloadPage() {
             {/* Left Side - Document Info */}
             <div className="flex-1">
               {/* Header */}
-              <p className="text-[20px] font-medium mb-2" style={{ color: '#133D63' }}>
+              <p className="text-[16px] sm:text-[20px] font-bold mb-2" style={{ color: '#133D63' }}>
                 3分で分かる監理ワン
               </p>
-              <h1 className="text-[28px] sm:text-[32px] lg:text-[36px] font-bold mb-4 leading-tight" style={{ color: '#143C62' }}>
+              <h1 className="text-[24px] sm:text-[32px] lg:text-[36px] font-bold mb-4 leading-tight" style={{ color: '#143C62' }}>
                 業務の「手間」削減ガイド配布中
               </h1>
-              <p className="text-[14px] mb-6 lg:mb-8 leading-relaxed" style={{ color: '#5B646F' }}>
-                育成就労制度への移行や、膨大な書類作成に追われていませんか？監理ワンが提案する「次世代の管理体制」をまとめました。
+              <p className="text-[13px] sm:text-[14px] mb-6 lg:mb-8 leading-relaxed" style={{ color: '#5B646F' }}>
+                育成就労への制度移行に不安はありませんか？ 書類作成や監査対応の属人化から脱却し、監理ワンが提案する効率的な管理体制を今すぐ確認してください。
               </p>
 
-              {/* Document Preview Image */}
-              <div className="relative w-full max-w-lg mx-auto lg:mx-0 mb-8">
+              {/* Document Preview Image - Outside card */}
+              <div className="relative w-full my-[20px] mx-[28px] sm:mx-0 sm:px-[28px]">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-cT6R2iKjJzJDJIGxlEi3r3HYlyCbO9.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-MnK0um8WpRKOtb1bowdEN4qv04mhS8.png"
                   alt="監理ワン資料プレビュー"
-                  width={600}
-                  height={400}
+                  width={800}
+                  height={500}
                   className="w-full h-auto rounded-lg"
                 />
               </div>
 
-              {/* Features List */}
-              <div className="bg-white rounded-xl p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-8">
-                <div className="space-y-5">
+              {/* White Card with Features */}
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-[20px] mx-[15px] sm:mx-0 sm:px-[15px]">
+                {/* Features List */}
+                <div className="space-y-4 sm:space-y-5">
                   {features.map((feature, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5">
-                        <Check className="w-3.5 h-3.5 text-primary" />
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5" style={{ backgroundColor: 'rgba(0, 140, 108, 0.1)' }}>
+                        <Check className="w-3.5 h-3.5" style={{ color: '#008C6C' }} />
                       </div>
                       <div>
-                        <p className="text-[14px] font-semibold" style={{ color: '#143C62' }}>
+                        <p className="text-[13px] sm:text-[14px] font-semibold" style={{ color: '#143C62' }}>
                           {feature.title}
                         </p>
-                        <p className="text-[13px]" style={{ color: '#5B646F' }}>
+                        <p className="text-[12px] sm:text-[13px]" style={{ color: '#5B646F' }}>
                           {feature.description}
                         </p>
                       </div>
@@ -135,8 +136,8 @@ export default function DownloadPage() {
                 </div>
               </div>
 
-              {/* Bottom Text */}
-              <p className="text-[14px]" style={{ color: '#5B646F' }}>
+              {/* Bottom Text - Centered */}
+              <p className="text-[13px] sm:text-[14px] text-center" style={{ color: '#5B646F' }}>
                 <span className="font-semibold" style={{ color: '#133D63' }}>500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
               </p>
             </div>
@@ -159,7 +160,7 @@ export default function DownloadPage() {
                   {/* Company Type */}
                   <div className="space-y-2">
                     <Label htmlFor="company-type" className="text-sm font-medium text-foreground">
-                      企業区分 <span className="text-red-500">※</span>
+                      企業区�� <span className="text-red-500">※</span>
                     </Label>
                     <select
                       id="company-type"
@@ -221,7 +222,7 @@ export default function DownloadPage() {
                   {/* Phone */}
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-sm font-medium text-foreground">
-                      電話番号
+                      電話番���
                     </Label>
                     <Input
                       id="phone"
@@ -243,7 +244,8 @@ export default function DownloadPage() {
                         type="checkbox"
                         checked={agreePrivacy}
                         onChange={(e) => setAgreePrivacy(e.target.checked)}
-                        className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                        className="h-4 w-4 rounded border-gray-300 accent-[#008C6C] focus:ring-[#008C6C]"
+                        style={{ accentColor: '#008C6C' }}
                       />
                       <span className="text-sm text-muted-foreground">
                         <Link href="/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
