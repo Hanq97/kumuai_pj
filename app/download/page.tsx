@@ -93,7 +93,7 @@ export default function DownloadPage() {
             {/* Left Side - Document Info */}
             <div className="flex-1">
               {/* Header */}
-              <p className="text-[16px] sm:text-[20px] font-medium mb-2" style={{ color: '#133D63' }}>
+              <p className="text-[16px] sm:text-[20px] font-bold mb-2" style={{ color: '#133D63' }}>
                 3分で分かる監理ワン
               </p>
               <h1 className="text-[24px] sm:text-[32px] lg:text-[36px] font-bold mb-4 leading-tight" style={{ color: '#143C62' }}>
@@ -104,7 +104,7 @@ export default function DownloadPage() {
               </p>
 
               {/* Document Preview Image - Outside card */}
-              <div className="relative w-full mb-6">
+              <div className="relative w-full my-[20px] mx-[28px] sm:mx-0 sm:px-[28px]">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_mzoa2qmzoa2qmzoa%201-MnK0um8WpRKOtb1bowdEN4qv04mhS8.png"
                   alt="監理ワン資料プレビュー"
@@ -115,7 +115,7 @@ export default function DownloadPage() {
               </div>
 
               {/* White Card with Features */}
-              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-6">
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-[20px] mx-[15px] sm:mx-0 sm:px-[15px]">
                 {/* Features List */}
                 <div className="space-y-4 sm:space-y-5">
                   {features.map((feature, index) => (
@@ -222,7 +222,7 @@ export default function DownloadPage() {
                   {/* Phone */}
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-sm font-medium text-foreground">
-                      電話番号
+                      電話番���
                     </Label>
                     <Input
                       id="phone"
