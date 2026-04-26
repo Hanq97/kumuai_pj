@@ -66,27 +66,20 @@ const plans = [
 ]
 
 const features = [
-  "公式帳票対応済み",
-  "クラウド対応",
-  "アカウント数無制限",
-  "備付帳票対応",
-  "印刷連携",
-  "母国語対応",
-  "CSVインポート",
-  "マスター登録",
-  "CSVエクスポート",
-  "マスター再取得",
-  "アラート機能",
-  "特定技能データコンバート",
-  "マスター逆反映",
-  "業務フロー機能",
-  "ストレージ機能",
-  "一括登録",
-  "フローカスタマイズ",
-  "在留オンライン申請対応",
+  "公式帳票出力",
+  "在留オンライン申請連携",
+  "特定技能データ変換",
+  "帳票テンプレート管理",
+  "業務フローカスタマイズ",
+  "期限管理アラート",
+  "一括CSV連携",
+  "マスター一元",
+  "管理アカウント数無制限",
+  "権限設定・タスク管理",
+  "セキュア・ストレージ",
   "複製登録",
-  "タスク管理機能",
-  "アカウント連携機能",
+  "CSVインポート",
+  "一括登録",
 ]
 
 const schedules = [
@@ -191,11 +184,8 @@ export default function PricingPage() {
         <section className="py-10 sm:py-12 lg:py-16 bg-secondary/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-8 sm:mb-12">
-              <span className="text-primary font-medium text-sm sm:text-base mb-2 block">
-                ＼ 圧倒的コストパフォーマンス ／
-              </span>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                これだけの機能が<br className="sm:hidden" />業界トップクラスの低価格で利用できます。
+                監理業務の『不安』を『確信』へ。<br className="sm:hidden" />法規制に強く、正確な運営を支える管理システム
               </h2>
             </div>
             <div className="max-w-4xl mx-auto">
