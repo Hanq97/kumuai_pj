@@ -125,27 +125,25 @@ export default function BlogPage() {
             ))}
           </div>
 
-          {/* CTA Banner - shown in middle of content */}
-          {currentPage === 1 && filteredPosts.length > 3 && (
-            <div className="my-8 sm:my-12 p-6 sm:p-8 bg-primary rounded-xl text-center">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-foreground mb-2 sm:mb-3">
-                2027年の法改正、準備はできていますか？
-              </h3>
-              <p className="text-sm sm:text-base text-primary-foreground/80 mb-4 sm:mb-6">
-                監理ワンなら、法改正への対応も自動で完了します。
-              </p>
-              <Button 
-                size="lg"
-                className="text-sm sm:text-base bg-accent hover:bg-accent/90 text-accent-foreground"
-                asChild
-              >
-                <Link href="/#contact?type=demo">
-                  無料デモを予約する
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          )}
+          {/* CTA Banner - always shown below blog list */}
+          <div className="my-8 sm:my-12 p-6 sm:p-8 bg-primary rounded-xl text-center">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-foreground mb-2 sm:mb-3">
+              2027年の法改正、準備はできていますか？
+            </h3>
+            <p className="text-sm sm:text-base text-primary-foreground/80 mb-4 sm:mb-6">
+              監理ワンなら、法改正への対応も自動で完了します。
+            </p>
+            <Button 
+              size="lg"
+              className="text-sm sm:text-base bg-accent hover:bg-accent/90 text-accent-foreground"
+              onClick={() => {
+                window.location.href = "/#contact?type=demo"
+              }}
+            >
+              無料デモを予約する
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
 
           {/* Pagination */}
           {totalPages > 1 && (

@@ -17,18 +17,28 @@ export function ContactSection() {
   const [selectedInquiryType, setSelectedInquiryType] = useState("")
   const [agreePrivacy, setAgreePrivacy] = useState(false)
 
-  // Check URL params on mount and on hash change to auto-select inquiry type
+  // Check URL params on mount and on hash change to auto-select inquiry type and scroll
   useEffect(() => {
-    const checkHash = () => {
+    const checkHashAndScroll = () => {
       const hash = window.location.hash
-      if (hash.includes("type=demo")) {
-        setSelectedInquiryType("demo")
+      if (hash.includes("contact")) {
+        // Auto-select demo if type=demo is in URL
+        if (hash.includes("type=demo")) {
+          setSelectedInquiryType("demo")
+        }
+        // Scroll to contact section
+        setTimeout(() => {
+          const contactSection = document.getElementById("contact")
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: "smooth" })
+          }
+        }, 100)
       }
     }
     
-    checkHash()
-    window.addEventListener("hashchange", checkHash)
-    return () => window.removeEventListener("hashchange", checkHash)
+    checkHashAndScroll()
+    window.addEventListener("hashchange", checkHashAndScroll)
+    return () => window.removeEventListener("hashchange", checkHashAndScroll)
   }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
