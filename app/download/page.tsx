@@ -115,7 +115,7 @@ export default function DownloadPage() {
               </div>
 
               {/* White Card with Features */}
-              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-[20px] mx-[15px] sm:mx-0 sm:px-[15px]">
+              <div className="bg-white rounded-xl py-[25px] px-[25px] shadow-[0_4px_20px_rgba(0,0,0,0.08)] mb-[30px]">
                 {/* Features List */}
                 <div className="space-y-4 sm:space-y-5">
                   {features.map((feature, index) => (
@@ -137,7 +137,7 @@ export default function DownloadPage() {
               </div>
 
               {/* Bottom Text - Centered */}
-              <p className="text-[13px] sm:text-[14px] text-center" style={{ color: '#5B646F' }}>
+              <p className="text-[13px] sm:text-[14px] text-center mb-[70px]" style={{ color: '#5B646F' }}>
                 <span className="font-semibold" style={{ color: '#133D63' }}>500社以上の監理団体・支援機関</span>がこのガイドを参考に運用を開始しています。
               </p>
             </div>
