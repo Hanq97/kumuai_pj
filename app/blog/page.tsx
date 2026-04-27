@@ -137,13 +137,7 @@ export default function BlogPage() {
               size="lg"
               className="text-sm sm:text-base bg-accent hover:bg-accent/90 text-accent-foreground"
               onClick={() => {
-                window.location.href = "/#contact"
-                setTimeout(() => {
-                  const contactSection = document.getElementById("contact")
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth" })
-                  }
-                }, 100)
+                window.location.href = "/#contact?type=demo"
               }}
             >
               無料デモを予約する
