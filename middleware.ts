@@ -6,6 +6,19 @@ const BASIC_AUTH_USER = "kanri-one"
 const BASIC_AUTH_PASSWORD = "Deha@1012"
 
 export function middleware(request: NextRequest) {
+  // Skip Basic Auth in development or v0 preview environment
+  const host = request.headers.get("host") || ""
+  const isDevOrPreview = 
+    process.env.NODE_ENV === "development" ||
+    host.includes("localhost") ||
+    host.includes("vercel.app") ||
+    host.includes("v0.dev") ||
+    host.includes("vusercontent.net")
+
+  if (isDevOrPreview) {
+    return NextResponse.next()
+  }
+
   const authHeader = request.headers.get("authorization")
 
   if (authHeader) {
